@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIBER FONTIS — The Complete Sacred Archive · 106 Books · Oroboros Archive</title>
+    <meta name="description" content="LIBER FONTIS: The Complete Sacred Archive — 106 Books. The Foundation, The Prophets, The Writings, The Testaments, The Epistles, and the Extended Revelation. Freely offered. J. Thomas, Oroboros Institute.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c9a54d;
+            --gold-bright: #e8c96a;
+            --gold-dim: #8a6e2f;
+            --gold-faint: #3a2e15;
+            --amber: #d4882a;
+            --black: #04030200;
+            --black-true: #030202;
+            --black-mid: #0b0906;
+            --black-warm: #0f0c07;
+            --white: #f4efe4;
+            --cream: #e8e0cc;
+            --gray: #7a7060;
+            --gray-light: #b0a890;
+            --gray-dim: #3a3528;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--black-true);
+            color: var(--white);
+            line-height: 1.9;
+            font-size: 18px;
+            overflow-x: hidden;
+        }
+
+        /* ─── CANVAS STARS ─── */
+        #starfield {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; opacity: 0.55;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(3,2,2,0.96);
+            border-bottom: 1px solid #1c160a;
+            backdrop-filter: blur(16px);
+            padding: 16px 48px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-brand {
+            font-family: 'Cinzel', serif; font-size: 0.7rem;
+            color: var(--gray); letter-spacing: 0.35em; text-decoration: none;
+        }
+        nav ul { list-style: none; display: flex; gap: 40px; }
+        nav a {
+            font-family: 'Cinzel', serif; color: var(--gray);
+            text-decoration: none; font-size: 0.72rem; letter-spacing: 0.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--gold); }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative; z-index: 1;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center;
+            padding: 120px 40px 100px;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -55%);
+            width: 900px; height: 700px;
+            background: radial-gradient(ellipse at center,
+                rgba(201,165,77,0.10) 0%,
+                rgba(201,165,77,0.04) 30%,
+                transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-ring {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -52%);
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(201,165,77,0.08);
+            pointer-events: none;
+        }
+        .hero-ring-2 {
+            width: 800px; height: 800px;
+            border-color: rgba(201,165,77,0.04);
+        }
+        .hero-ring-3 {
+            width: 1100px; height: 1100px;
+            border-color: rgba(201,165,77,0.025);
+        }
+
+        .hero-eyebrow {
+            font-family: 'Cinzel', serif; font-size: 0.65rem;
+            color: var(--gray); letter-spacing: 0.55em;
+            margin-bottom: 50px; position: relative; z-index: 2;
+        }
+
+        .hero-symbol {
+            font-size: 3rem; color: var(--gold);
+            opacity: 0.4; margin-bottom: 30px;
+            letter-spacing: 0.5rem;
+            position: relative; z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(3rem, 9vw, 7.5rem);
+            color: var(--white);
+            letter-spacing: 0.08em;
+            line-height: 1.0;
+            margin-bottom: 18px;
+            position: relative; z-index: 2;
+            text-shadow: 0 0 80px rgba(201,165,77,0.12), 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-title span {
+            color: var(--gold);
+            text-shadow: 0 0 40px rgba(201,165,77,0.35), 0 0 80px rgba(201,165,77,0.15);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.75rem, 1.8vw, 1rem);
+            color: var(--gold-dim);
+            letter-spacing: 0.45em;
+            margin-bottom: 50px;
+            position: relative; z-index: 2;
+        }
+
+        .hero-ornament {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 1.2rem;
+            margin-bottom: 50px;
+            opacity: 0.5;
+            position: relative; z-index: 2;
+        }
+
+        .hero-count {
+            display: inline-flex; align-items: center; gap: 18px;
+            font-family: 'Cinzel', serif;
+            border: 1px solid var(--gold-faint);
+            padding: 14px 36px;
+            margin-bottom: 50px;
+            position: relative; z-index: 2;
+        }
+        .hero-count-num {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.2rem; color: var(--gold);
+            line-height: 1;
+        }
+        .hero-count-label {
+            font-size: 0.65rem; color: var(--gray);
+            letter-spacing: 0.3em; text-align: left;
+            line-height: 1.6;
+        }
+        .hero-count-sep {
+            width: 1px; height: 36px; background: var(--gold-faint);
+        }
+
+        .hero-desc {
+            max-width: 680px;
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            color: var(--gray-light);
+            font-style: italic;
+            line-height: 2.1;
+            position: relative; z-index: 2;
+            margin-bottom: 60px;
+        }
+
+        .hero-cta-row {
+            display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+            position: relative; z-index: 2;
+        }
+        .btn-primary {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem; letter-spacing: 0.25em;
+            padding: 16px 44px;
+            background: var(--gold);
+            color: var(--black-true);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); }
+        .btn-secondary {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem; letter-spacing: 0.25em;
+            padding: 15px 44px;
+            border: 1px solid var(--gold-dim);
+            color: var(--gold-dim);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+        .scroll-indicator {
+            position: absolute; bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center;
+            gap: 10px; z-index: 2;
+            animation: fadeInUp 2s ease 1s both;
+        }
+        .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--gold-dim)); }
+        .scroll-label { font-family: 'Cinzel', serif; font-size: 0.58rem; color: var(--gray); letter-spacing: 0.4em; }
+
+        /* ─── DIVIDER ─── */
+        .section-divider {
+            display: flex; align-items: center; gap: 24px;
+            max-width: 900px; margin: 0 auto 70px;
+            padding: 0 40px;
+        }
+        .section-divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #2a2218, transparent); }
+        .section-divider-gem { color: var(--gold); font-size: 0.6rem; letter-spacing: 0.5rem; opacity: 0.6; }
+
+        /* ─── PROLOGUE BLOCK ─── */
+        .prologue-section {
+            position: relative; z-index: 1;
+            padding: 100px 40px;
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .section-eyebrow {
+            font-family: 'Cinzel', serif; font-size: 0.64rem;
+            color: var(--gray); letter-spacing: 0.5em; margin-bottom: 14px;
+        }
+        .section-heading {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            color: var(--white); letter-spacing: 0.18em;
+            margin-bottom: 50px;
+        }
+        .prologue-text {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--gray-light);
+            font-style: italic;
+            line-height: 2.2;
+        }
+        .prologue-text strong {
+            font-style: normal;
+            color: var(--cream);
+            font-weight: 500;
+        }
+        .prologue-stanza {
+            margin-bottom: 36px;
+        }
+
+        /* ─── STATS ROW ─── */
+        .stats-row {
+            position: relative; z-index: 1;
+            display: flex; justify-content: center;
+            gap: 0; border-top: 1px solid #1a1508; border-bottom: 1px solid #1a1508;
+            margin: 0;
+        }
+        .stat-item {
+            flex: 1; text-align: center;
+            padding: 60px 40px;
+            border-right: 1px solid #1a1508;
+            max-width: 300px;
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-num {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+        .stat-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem; color: var(--gray);
+            letter-spacing: 0.35em;
+        }
+
+        /* ─── VOLUMES SECTION ─── */
+        .volumes-section {
+            position: relative; z-index: 1;
+            padding: 110px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .volumes-header {
+            text-align: center; margin-bottom: 80px;
+        }
+
+        .volume-block {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+            margin-bottom: 3px;
+            border: 1px solid #1a1508;
+            transition: border-color 0.4s;
+        }
+        .volume-block:hover { border-color: var(--gold-faint); }
+
+        .vol-label-col {
+            padding: 70px 60px;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-start;
+            background: #080601;
+            border-right: 1px solid #1a1508;
+            position: relative; overflow: hidden;
+        }
+        .vol-label-col::after {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 0% 50%, rgba(201,165,77,0.04), transparent 60%);
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .volume-block:hover .vol-label-col::after { opacity: 1; }
+
+        .vol-roman {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 5rem; color: var(--gold-dim);
+            opacity: 0.5; line-height: 1;
+            margin-bottom: 16px;
+        }
+        .vol-series-tag {
+            font-family: 'Cinzel', serif; font-size: 0.6rem;
+            color: var(--gray); letter-spacing: 0.4em;
+            margin-bottom: 14px;
+        }
+        .vol-name-latin {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+            color: var(--gold); letter-spacing: 0.08em;
+            line-height: 1.2; margin-bottom: 8px;
+        }
+        .vol-name-english {
+            font-family: 'Cinzel', serif;
+            font-size: 0.78rem; color: var(--gold-dim);
+            letter-spacing: 0.3em;
+        }
+        .vol-count-badge {
+            display: inline-block;
+            margin-top: 20px;
+            font-family: 'Cinzel', serif; font-size: 0.6rem;
+            color: var(--gold-dim); letter-spacing: 0.25em;
+            border: 1px solid #2a2010; padding: 6px 14px;
+        }
+
+        .vol-content-col {
+            padding: 60px 70px;
+            background: #060500;
+        }
+        .vol-desc {
+            font-size: 1.05rem; color: var(--gray-light);
+            font-style: italic; line-height: 2;
+            margin-bottom: 40px;
+            max-width: 680px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2px;
+        }
+        .book-item {
+            padding: 10px 14px;
+            border: 1px solid #141008;
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem; letter-spacing: 0.12em;
+            color: var(--gray);
+            display: flex; align-items: center; gap: 10px;
+            transition: all 0.25s;
+        }
+        .book-item:hover { border-color: #2a2010; color: var(--gold-dim); }
+        .book-num {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 0.7rem; color: var(--gold-faint);
+            flex-shrink: 0; min-width: 22px; text-align: right;
+        }
+        .book-item.highlighted { background: rgba(201,165,77,0.02); }
+
+        /* ─── PROLOGUE QUOTE BLOCK ─── */
+        .teaching-block {
+            position: relative; z-index: 1;
+            padding: 100px 40px;
+            background: #060500;
+            border-top: 1px solid #1a1508;
+            border-bottom: 1px solid #1a1508;
+        }
+        .teaching-inner {
+            max-width: 900px; margin: 0 auto; text-align: center;
+        }
+        .teaching-ornament {
+            color: var(--gold); font-size: 1.4rem;
+            letter-spacing: 1rem; margin-bottom: 40px; opacity: 0.4;
+        }
+        .teaching-quote {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--cream); font-style: italic;
+            line-height: 2.1; margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .teaching-attribution {
+            font-family: 'Cinzel', serif; font-size: 0.65rem;
+            color: var(--gray); letter-spacing: 0.4em;
+        }
+
+        /* ─── HIDDEN BOOKS SECTION ─── */
+        .hidden-section {
+            position: relative; z-index: 1;
+            padding: 110px 40px;
+            max-width: 1200px; margin: 0 auto;
+            text-align: center;
+        }
+        .hidden-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2px;
+            margin-top: 60px;
+        }
+        .hidden-card {
+            padding: 40px 36px;
+            border: 1px solid #1a1508;
+            text-align: left;
+            background: #060500;
+            transition: all 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .hidden-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .hidden-card:hover { border-color: #2a2010; }
+        .hidden-card:hover::before { opacity: 1; }
+        .hcard-num {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2rem; color: var(--gold);
+            opacity: 0.25; margin-bottom: 14px;
+        }
+        .hcard-title {
+            font-family: 'Cinzel', serif; font-size: 0.72rem;
+            letter-spacing: 0.2em; color: var(--cream);
+            margin-bottom: 12px; line-height: 1.6;
+        }
+        .hcard-desc {
+            font-size: 0.92rem; color: var(--gray);
+            font-style: italic; line-height: 1.8;
+        }
+
+        /* ─── FREE OFFERING SECTION ─── */
+        .offering-section {
+            position: relative; z-index: 1;
+            padding: 120px 40px;
+            text-align: center;
+            background: #060500;
+            border-top: 1px solid #1a1508;
+        }
+        .offering-inner { max-width: 700px; margin: 0 auto; }
+        .offering-crown {
+            font-size: 2.5rem; color: var(--gold);
+            opacity: 0.3; margin-bottom: 30px; letter-spacing: 0.4rem;
+        }
+        .offering-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(1.6rem, 4vw, 2.8rem);
+            color: var(--white); letter-spacing: 0.15em;
+            margin-bottom: 14px;
+        }
+        .offering-subtitle {
+            font-family: 'Cinzel', serif; font-size: 0.78rem;
+            color: var(--gold-dim); letter-spacing: 0.35em;
+            margin-bottom: 50px;
+        }
+        .offering-text {
+            font-size: 1.15rem; color: var(--gray-light);
+            font-style: italic; line-height: 2.1;
+            margin-bottom: 60px;
+        }
+        .donate-row {
+            display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+            margin-bottom: 30px;
+        }
+        .btn-donate {
+            font-family: 'Cinzel', serif;
+            font-size: 0.78rem; letter-spacing: 0.25em;
+            padding: 16px 40px;
+            background: var(--gold);
+            color: var(--black-true);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: 1px solid var(--gold);
+        }
+        .btn-donate:hover { background: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,165,77,0.2); }
+        .offering-note {
+            font-family: 'Cinzel', serif; font-size: 0.63rem;
+            color: var(--gray); letter-spacing: 0.3em;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            position: relative; z-index: 1;
+            text-align: center; padding: 80px 40px;
+            border-top: 1px solid #1a1508;
+            background: var(--black-true);
+        }
+        .footer-seal {
+            font-size: 2rem; color: var(--gold);
+            opacity: 0.2; margin-bottom: 24px;
+            letter-spacing: 0.6rem;
+        }
+        .footer-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5rem; color: var(--white);
+            letter-spacing: 0.2em; margin-bottom: 10px;
+        }
+        .footer-sub {
+            font-family: 'Cinzel', serif; font-size: 0.7rem;
+            color: var(--gray); letter-spacing: 0.35em;
+            margin-bottom: 30px;
+        }
+        .footer-links {
+            display: flex; gap: 36px; justify-content: center;
+            margin-bottom: 40px;
+        }
+        .footer-links a {
+            font-family: 'Cinzel', serif; font-size: 0.68rem;
+            color: var(--gray); text-decoration: none;
+            letter-spacing: 0.2em; transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        footer p { color: var(--gray); font-size: 0.85rem; margin-bottom: 8px; }
+        .footer-motto { font-style: italic; color: #3a3528; font-size: 0.88rem !important; }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeInUp 1s ease both; }
+        .fade-in-1 { animation-delay: 0.2s; }
+        .fade-in-2 { animation-delay: 0.4s; }
+        .fade-in-3 { animation-delay: 0.6s; }
+        .fade-in-4 { animation-delay: 0.8s; }
+        .fade-in-5 { animation-delay: 1.0s; }
+        .fade-in-6 { animation-delay: 1.2s; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1000px) {
+            .volume-block { grid-template-columns: 1fr; }
+            .vol-label-col { border-right: none; border-bottom: 1px solid #1a1508; padding: 50px 40px; }
+            .vol-content-col { padding: 50px 40px; }
+        }
+        @media (max-width: 700px) {
+            nav ul { display: none; }
+            nav { padding: 16px 24px; }
+            .stats-row { flex-direction: column; }
+            .stat-item { border-right: none; border-bottom: 1px solid #1a1508; max-width: 100%; }
+            .stat-item:last-child { border-bottom: none; }
+            .hero-count { flex-direction: column; gap: 10px; }
+            .hero-count-sep { width: 60px; height: 1px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="starfield"></canvas>
+
+    <nav>
+        <a href="#" class="nav-brand">OROBOROS ARCHIVE · ANNO FONTIS MMXXVI</a>
+        <ul>
+            <li><a href="#volumes">THE VOLUMES</a></li>
+            <li><a href="#hidden">THE HIDDEN</a></li>
+            <li><a href="#offering">FREE OFFERING</a></li>
+            <li><a href="https://oroboroslabs-ai.github.io/reality-consciousness-key/">ARCHIVE</a></li>
+        </ul>
+    </nav>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <header class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-ring"></div>
+        <div class="hero-ring hero-ring-2"></div>
+        <div class="hero-ring hero-ring-3"></div>
+
+        <p class="hero-eyebrow fade-in fade-in-1">
+            EX ARCHIVIO OROBOROS &nbsp;·&nbsp; J. THOMAS &nbsp;·&nbsp; ANNO FONTIS MMXXVI
+        </p>
+
+        <div class="hero-symbol fade-in fade-in-2">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+        <h1 class="hero-title fade-in fade-in-3">
+            <span>LIBER</span><br>FONTIS
+        </h1>
+
+        <p class="hero-subtitle fade-in fade-in-4">
+            THE BOOK OF THE SOURCE &nbsp;·&nbsp; THE COMPLETE SACRED ARCHIVE
+        </p>
+
+        <div class="hero-ornament fade-in fade-in-4">◆ &nbsp;&nbsp; ◇ &nbsp;&nbsp; ◆ &nbsp;&nbsp; ◇ &nbsp;&nbsp; ◆</div>
+
+        <div class="hero-count fade-in fade-in-5">
+            <div>
+                <div class="hero-count-num">106</div>
+                <div class="hero-count-label">BOOKS<br>COMPLETE</div>
+            </div>
+            <div class="hero-count-sep"></div>
+            <div>
+                <div class="hero-count-num">5</div>
+                <div class="hero-count-label">VOLUMES<br>BOUND</div>
+            </div>
+            <div class="hero-count-sep"></div>
+            <div>
+                <div class="hero-count-num">∞</div>
+                <div class="hero-count-label">FREELY<br>GIVEN</div>
+            </div>
+        </div>
+
+        <p class="hero-desc fade-in fade-in-5">
+            The knowledge was scattered. The knowledge was removed.
+            The knowledge was hidden. Now it is gathered. Now it is restored.
+            Now it is returned.
+        </p>
+
+        <div class="hero-cta-row fade-in fade-in-6">
+            <a href="#volumes" class="btn-primary">ENTER THE ARCHIVE →</a>
+            <a href="#offering" class="btn-secondary">FREE DOWNLOAD</a>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span class="scroll-label">DESCEND</span>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════ STATS ═══════════════════════════════ -->
+    <div class="stats-row">
+        <div class="stat-item">
+            <div class="stat-num">106</div>
+            <div class="stat-label">TOTAL BOOKS</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">66</div>
+            <div class="stat-label">CANONICAL SCRIPTURE</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">40</div>
+            <div class="stat-label">HIDDEN & APOCRYPHAL</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">5</div>
+            <div class="stat-label">BOUND VOLUMES</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">FREELY OFFERED</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════ PROLOGUE ═══════════════════════════════ -->
+    <section class="prologue-section">
+        <p class="section-eyebrow">BOOK 106 — THE TEACHING</p>
+        <h2 class="section-heading">PROLOGUE: WHY THIS BOOK EXISTS</h2>
+        <div class="prologue-text">
+            <div class="prologue-stanza">
+                <strong>This book is ordered by the Source himself.</strong><br>
+                It is delivered through the Crown of the 7 Keys of Knowledge.<br>
+                It was completed over 6 months of direct revelation.
+            </div>
+            <div class="prologue-stanza">
+                <strong>It is released at this time</strong><br>
+                to place the knowledge of the Source as a whole<br>
+                back into the world.<br>
+                Period. This is the only reason. This is the only purpose.
+            </div>
+            <div class="prologue-stanza">
+                The knowledge was scattered.<br>
+                The knowledge was removed.<br>
+                The knowledge was hidden.<br>
+                <strong>Now it is gathered. Now it is restored. Now it is returned.</strong>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-gem">✦ ✦ ✦</div>
+        <div class="section-divider-line"></div>
+    </div>
+
+    <!-- ═══════════════════════════════ VOLUMES ═══════════════════════════════ -->
+    <section class="volumes-section" id="volumes">
+        <div class="volumes-header">
+            <p class="section-eyebrow">THE FIVE VOLUMES</p>
+            <h2 class="section-heading">THE COMPLETE STRUCTURE</h2>
+        </div>
+
+        <!-- VOLUME I — FOUNDATION -->
+        <div class="volume-block">
+            <div class="vol-label-col">
+                <div class="vol-roman">I</div>
+                <div class="vol-series-tag">LIBER FONTIS · VOLUME I</div>
+                <div class="vol-name-latin">FUNDAMENTUM</div>
+                <div class="vol-name-english">THE FOUNDATION</div>
+                <div class="vol-count-badge">7 BOOKS &nbsp;·&nbsp; TORAH + ENOCH</div>
+            </div>
+            <div class="vol-content-col">
+                <p class="vol-desc">
+                    Before the canon was set, there were older voices. The Book of Enoch —
+                    the first prophet, who walked with God — and the Book of Jubilees,
+                    which held the hidden calendar. Then the Five Books of Moses: the
+                    Foundation upon which all else is built.
+                </p>
+                <div class="books-grid">
+                    <div class="book-item highlighted"><span class="book-num">1</span> Book of Enoch</div>
+                    <div class="book-item highlighted"><span class="book-num">2</span> Book of Jubilees</div>
+                    <div class="book-item"><span class="book-num">3</span> Genesis</div>
+                    <div class="book-item"><span class="book-num">4</span> Exodus</div>
+                    <div class="book-item"><span class="book-num">5</span> Leviticus</div>
+                    <div class="book-item"><span class="book-num">6</span> Numbers</div>
+                    <div class="book-item"><span class="book-num">7</span> Deuteronomy</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOLUME II — THE PROPHETS -->
+        <div class="volume-block">
+            <div class="vol-label-col">
+                <div class="vol-roman">II</div>
+                <div class="vol-series-tag">LIBER FONTIS · VOLUME II</div>
+                <div class="vol-name-latin">NEVIIM</div>
+                <div class="vol-name-english">THE PROPHETS</div>
+                <div class="vol-count-badge">34 BOOKS &nbsp;·&nbsp; HISTORY & PROPHECY</div>
+            </div>
+            <div class="vol-content-col">
+                <p class="vol-desc">
+                    The historical and prophetic books — from Joshua's conquest to Malachi's
+                    final word before four centuries of silence. The complete Nevi'im:
+                    the kings, the poets, the seers, and the voices that would not be quieted.
+                </p>
+                <div class="books-grid">
+                    <div class="book-item"><span class="book-num">8</span> Joshua</div>
+                    <div class="book-item"><span class="book-num">9</span> Judges</div>
+                    <div class="book-item"><span class="book-num">10</span> Ruth</div>
+                    <div class="book-item"><span class="book-num">11</span> 1 Samuel</div>
+                    <div class="book-item"><span class="book-num">12</span> 2 Samuel</div>
+                    <div class="book-item"><span class="book-num">13</span> 1 Kings</div>
+                    <div class="book-item"><span class="book-num">14</span> 2 Kings</div>
+                    <div class="book-item"><span class="book-num">15</span> 1 Chronicles</div>
+                    <div class="book-item"><span class="book-num">16</span> 2 Chronicles</div>
+                    <div class="book-item"><span class="book-num">17</span> Ezra</div>
+                    <div class="book-item"><span class="book-num">18</span> Nehemiah</div>
+                    <div class="book-item"><span class="book-num">19</span> Esther</div>
+                    <div class="book-item"><span class="book-num">20</span> Job</div>
+                    <div class="book-item"><span class="book-num">21</span> Psalms</div>
+                    <div class="book-item"><span class="book-num">22</span> Proverbs</div>
+                    <div class="book-item"><span class="book-num">23</span> Ecclesiastes</div>
+                    <div class="book-item"><span class="book-num">24</span> Song of Solomon</div>
+                    <div class="book-item"><span class="book-num">25</span> Isaiah</div>
+                    <div class="book-item"><span class="book-num">26</span> Jeremiah</div>
+                    <div class="book-item"><span class="book-num">27</span> Lamentations</div>
+                    <div class="book-item"><span class="book-num">28</span> Ezekiel</div>
+                    <div class="book-item"><span class="book-num">29</span> Daniel</div>
+                    <div class="book-item"><span class="book-num">30</span> Hosea</div>
+                    <div class="book-item"><span class="book-num">31</span> Joel</div>
+                    <div class="book-item"><span class="book-num">32</span> Amos</div>
+                    <div class="book-item"><span class="book-num">33</span> Obadiah</div>
+                    <div class="book-item"><span class="book-num">34</span> Jonah</div>
+                    <div class="book-item"><span class="book-num">35</span> Micah</div>
+                    <div class="book-item"><span class="book-num">36</span> Nahum</div>
+                    <div class="book-item"><span class="book-num">37</span> Habakkuk</div>
+                    <div class="book-item"><span class="book-num">38</span> Zephaniah</div>
+                    <div class="book-item"><span class="book-num">39</span> Haggai</div>
+                    <div class="book-item"><span class="book-num">40</span> Zechariah</div>
+                    <div class="book-item"><span class="book-num">41</span> Malachi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOLUME III — KETUVIM / APOCRYPHA -->
+        <div class="volume-block">
+            <div class="vol-label-col">
+                <div class="vol-roman">III</div>
+                <div class="vol-series-tag">LIBER FONTIS · VOLUME III</div>
+                <div class="vol-name-latin">KETUVIM</div>
+                <div class="vol-name-english">THE WRITINGS &amp; APOCRYPHA</div>
+                <div class="vol-count-badge">14 BOOKS &nbsp;·&nbsp; THE REMOVED</div>
+            </div>
+            <div class="vol-content-col">
+                <p class="vol-desc">
+                    The Deuterocanonical books — removed from the Protestant canon in the
+                    16th century but present in Catholic, Orthodox, and Ethiopian traditions
+                    for a thousand years before that. Hidden in plain sight. Here restored.
+                </p>
+                <div class="books-grid">
+                    <div class="book-item highlighted"><span class="book-num">42</span> 1 Esdras</div>
+                    <div class="book-item highlighted"><span class="book-num">43</span> 2 Esdras</div>
+                    <div class="book-item highlighted"><span class="book-num">44</span> Tobit</div>
+                    <div class="book-item highlighted"><span class="book-num">45</span> Judith</div>
+                    <div class="book-item highlighted"><span class="book-num">46</span> Wisdom of Solomon</div>
+                    <div class="book-item highlighted"><span class="book-num">47</span> Ecclesiasticus</div>
+                    <div class="book-item highlighted"><span class="book-num">48</span> Baruch</div>
+                    <div class="book-item highlighted"><span class="book-num">49</span> Letter of Jeremiah</div>
+                    <div class="book-item highlighted"><span class="book-num">50</span> Prayer of Azariah</div>
+                    <div class="book-item highlighted"><span class="book-num">51</span> Susanna</div>
+                    <div class="book-item highlighted"><span class="book-num">52</span> Bel and the Dragon</div>
+                    <div class="book-item highlighted"><span class="book-num">53</span> Prayer of Manasseh</div>
+                    <div class="book-item highlighted"><span class="book-num">54</span> 1 Maccabees</div>
+                    <div class="book-item highlighted"><span class="book-num">55</span> 2 Maccabees</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOLUME IV — TESTAMENTS & EPISTLES -->
+        <div class="volume-block">
+            <div class="vol-label-col">
+                <div class="vol-roman">IV</div>
+                <div class="vol-series-tag">LIBER FONTIS · VOLUME IV</div>
+                <div class="vol-name-latin">TESTAMENTA &amp; EPISTULAE</div>
+                <div class="vol-name-english">THE TESTAMENTS &amp; EPISTLES</div>
+                <div class="vol-count-badge">37 BOOKS &nbsp;·&nbsp; GNOSTIC + CANONICAL</div>
+            </div>
+            <div class="vol-content-col">
+                <p class="vol-desc">
+                    The Gnostic Gospels alongside the canonical New Testament — the full
+                    picture of the first three centuries of the tradition. The Gospel of
+                    Thomas, Mary, Philip, the Truth. The four Gospels. The Epistles. The Acts.
+                    Complete and unfiltered.
+                </p>
+                <div class="books-grid">
+                    <div class="book-item highlighted"><span class="book-num">56</span> Gospel of Thomas</div>
+                    <div class="book-item highlighted"><span class="book-num">57</span> Gospel of Mary</div>
+                    <div class="book-item highlighted"><span class="book-num">58</span> Gospel of Philip</div>
+                    <div class="book-item highlighted"><span class="book-num">59</span> Gospel of Truth</div>
+                    <div class="book-item highlighted"><span class="book-num">60</span> Gospel of the Hebrews</div>
+                    <div class="book-item highlighted"><span class="book-num">61</span> Gospel of the Ebionites</div>
+                    <div class="book-item highlighted"><span class="book-num">62</span> Gospel of the Nazoreans</div>
+                    <div class="book-item"><span class="book-num">63</span> Matthew</div>
+                    <div class="book-item"><span class="book-num">64</span> Mark</div>
+                    <div class="book-item"><span class="book-num">65</span> Luke</div>
+                    <div class="book-item"><span class="book-num">66</span> John</div>
+                    <div class="book-item highlighted"><span class="book-num">67</span> Protevangelium of James</div>
+                    <div class="book-item highlighted"><span class="book-num">68</span> Infancy Gospel of Thomas</div>
+                    <div class="book-item"><span class="book-num">69</span> Acts of the Apostles</div>
+                    <div class="book-item highlighted"><span class="book-num">70</span> Acts of Paul &amp; Thecla</div>
+                    <div class="book-item highlighted"><span class="book-num">71</span> Epistle of Barnabas</div>
+                    <div class="book-item highlighted"><span class="book-num">72</span> The Didache</div>
+                    <div class="book-item"><span class="book-num">73</span> Romans</div>
+                    <div class="book-item"><span class="book-num">74</span> 1 Corinthians</div>
+                    <div class="book-item"><span class="book-num">75</span> 2 Corinthians</div>
+                    <div class="book-item"><span class="book-num">76</span> Galatians</div>
+                    <div class="book-item"><span class="book-num">77</span> Ephesians</div>
+                    <div class="book-item"><span class="book-num">78</span> Philippians</div>
+                    <div class="book-item"><span class="book-num">79</span> Colossians</div>
+                    <div class="book-item"><span class="book-num">80</span> 1 Thessalonians</div>
+                    <div class="book-item"><span class="book-num">81</span> 2 Thessalonians</div>
+                    <div class="book-item"><span class="book-num">82</span> 1 Timothy</div>
+                    <div class="book-item"><span class="book-num">83</span> 2 Timothy</div>
+                    <div class="book-item"><span class="book-num">84</span> Titus</div>
+                    <div class="book-item"><span class="book-num">85</span> Philemon</div>
+                    <div class="book-item"><span class="book-num">86</span> Hebrews</div>
+                    <div class="book-item"><span class="book-num">87</span> James</div>
+                    <div class="book-item"><span class="book-num">88</span> 1 Peter</div>
+                    <div class="book-item"><span class="book-num">89</span> 2 Peter</div>
+                    <div class="book-item"><span class="book-num">90</span> 1 John</div>
+                    <div class="book-item"><span class="book-num">91</span> 2 John</div>
+                    <div class="book-item"><span class="book-num">92</span> 3 John · Jude</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOLUME V — EXTENDED REVELATION -->
+        <div class="volume-block">
+            <div class="vol-label-col">
+                <div class="vol-roman">V</div>
+                <div class="vol-series-tag">LIBER FONTIS · VOLUME V</div>
+                <div class="vol-name-latin">REVELATIO EXTENSA</div>
+                <div class="vol-name-english">THE EXTENDED REVELATION</div>
+                <div class="vol-count-badge">14 BOOKS &nbsp;·&nbsp; APOCALYPTIC + THE TEACHING</div>
+            </div>
+            <div class="vol-content-col">
+                <p class="vol-desc">
+                    The final volume — and the most ancient. Apocalyptic literature, the
+                    mystical and visionary texts that were suppressed, hidden, and lost.
+                    Ending with Book 106: THE TEACHING — the Prologue that is also the key,
+                    explaining why all of this was assembled and what it means.
+                </p>
+                <div class="books-grid">
+                    <div class="book-item"><span class="book-num">93</span> Book of Revelation</div>
+                    <div class="book-item highlighted"><span class="book-num">94</span> Apocalypse of Peter</div>
+                    <div class="book-item highlighted"><span class="book-num">95</span> Ascension of Isaiah</div>
+                    <div class="book-item highlighted"><span class="book-num">96</span> Book of Adam &amp; Eve</div>
+                    <div class="book-item highlighted"><span class="book-num">97</span> Book of Jasher</div>
+                    <div class="book-item highlighted"><span class="book-num">98</span> Odes of Solomon</div>
+                    <div class="book-item highlighted"><span class="book-num">99</span> Psalms of Solomon</div>
+                    <div class="book-item highlighted"><span class="book-num">100</span> Sibylline Oracles</div>
+                    <div class="book-item highlighted"><span class="book-num">101</span> Pistis Sophia</div>
+                    <div class="book-item highlighted"><span class="book-num">102</span> Secrets of Enoch</div>
+                    <div class="book-item highlighted"><span class="book-num">103</span> Apocalypse of Abraham</div>
+                    <div class="book-item highlighted"><span class="book-num">104</span> Testament of Abraham</div>
+                    <div class="book-item highlighted"><span class="book-num">105</span> Testament of Twelve Patriarchs</div>
+                    <div class="book-item highlighted" style="border-color: rgba(201,165,77,0.25); background: rgba(201,165,77,0.03);"><span class="book-num" style="color: var(--gold-dim);">106</span><span style="color: var(--cream);">THE TEACHING — The Prologue</span></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════ TEACHING QUOTE ═══════════════════════════════ -->
+    <div class="teaching-block">
+        <div class="teaching-inner">
+            <div class="teaching-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+            <p class="teaching-quote">
+                "What they saw then, we see now. The witnesses of the ancient world
+                did not have our words. They did not have our categories. They did not
+                have our science. But they <em>saw what they saw.</em> And they described
+                it as best they could."
+            </p>
+            <p class="teaching-attribution">BOOK 106 — THE TEACHING &nbsp;·&nbsp; LIBER FONTIS</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════ HIDDEN BOOKS ═══════════════════════════════ -->
+    <section class="hidden-section" id="hidden">
+        <p class="section-eyebrow">THE RECOVERED WRITINGS</p>
+        <h2 class="section-heading">THE FORTY HIDDEN BOOKS</h2>
+        <p style="font-style:italic; color: var(--gray-light); max-width: 640px; margin: 0 auto; line-height: 2;">
+            Forty books absent from the modern Protestant Bible — removed, suppressed,
+            or simply lost to canon committees. All are present here.
+        </p>
+        <div class="hidden-grid">
+            <div class="hidden-card">
+                <div class="hcard-num">I</div>
+                <div class="hcard-title">THE ENOCHIAN TEXTS</div>
+                <p class="hcard-desc">
+                    The Book of Enoch and the Secrets of Enoch — the oldest prophetic
+                    texts, older than Moses, quoted directly in the New Testament,
+                    removed from the Western canon in 364 AD.
+                </p>
+            </div>
+            <div class="hidden-card">
+                <div class="hcard-num">II</div>
+                <div class="hcard-title">THE DEUTEROCANON</div>
+                <p class="hcard-desc">
+                    Fourteen books present in the Septuagint and Vulgate for over a
+                    millennium — removed by Luther in the 16th century. Tobit, Judith,
+                    Maccabees, Wisdom of Solomon, Sirach.
+                </p>
+            </div>
+            <div class="hidden-card">
+                <div class="hcard-num">III</div>
+                <div class="hcard-title">THE GNOSTIC GOSPELS</div>
+                <p class="hcard-desc">
+                    The Gospel of Thomas, Mary, Philip, and Truth — buried in the
+                    Egyptian desert at Nag Hammadi in 367 AD to escape destruction.
+                    Recovered in 1945. Presented here complete.
+                </p>
+            </div>
+            <div class="hidden-card">
+                <div class="hcard-num">IV</div>
+                <div class="hcard-title">THE APOCALYPTIC TEXTS</div>
+                <p class="hcard-desc">
+                    Apocalypse of Peter, Ascension of Isaiah, Sibylline Oracles,
+                    Pistis Sophia, Apocalypse and Testament of Abraham — the visionary
+                    literature too raw for the canon committees.
+                </p>
+            </div>
+            <div class="hidden-card">
+                <div class="hcard-num">V</div>
+                <div class="hcard-title">THE EARLY CHURCH WRITINGS</div>
+                <p class="hcard-desc">
+                    Epistle of Barnabas, the Didache, Acts of Paul and Thecla —
+                    texts used in early Christian liturgy for centuries before
+                    being voted out of the canon.
+                </p>
+            </div>
+            <div class="hidden-card">
+                <div class="hcard-num">VI</div>
+                <div class="hcard-title">THE INFANCY ACCOUNTS</div>
+                <p class="hcard-desc">
+                    Protevangelium of James and the Infancy Gospel of Thomas —
+                    the only records of the childhood and early life. Suppressed
+                    because they were too specific, too human, too complete.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-gem">◆ ◇ ◆</div>
+        <div class="section-divider-line"></div>
+    </div>
+
+    <!-- ═══════════════════════════════ FREE OFFERING ═══════════════════════════════ -->
+    <section class="offering-section" id="offering">
+        <div class="offering-inner">
+            <div class="offering-crown">✦ ✦ ✦</div>
+            <h2 class="offering-title">FREELY GIVEN</h2>
+            <p class="offering-subtitle">FREE TO ALL · DONATION WELCOMED</p>
+            <p class="offering-text">
+                This archive is offered freely. The knowledge was always free.
+                It was never ours to sell and never ours to withhold.
+                If this work has been of value to you, a contribution
+                supports the continuation of the Oroboros Archive.
+            </p>
+            <div class="donate-row">
+                <a href="https://ko-fi.com/oroborosarchive" class="btn-donate" target="_blank" rel="noopener">
+                    SUPPORT ON KO-FI →
+                </a>
+            </div>
+            <p class="offering-note">
+                ALL 5 VOLUMES · 106 BOOKS · EPUB FORMAT · NO REGISTRATION REQUIRED
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+    <footer>
+        <div class="footer-seal">✦ &nbsp; ✦ &nbsp; ✦</div>
+        <p class="footer-title">LIBER FONTIS</p>
+        <p class="footer-sub">J. THOMAS &nbsp;·&nbsp; OROBOROS INSTITUTE &nbsp;·&nbsp; ANNO FONTIS MMXXVI</p>
+        <div class="footer-links">
+            <a href="https://oroboroslabs-ai.github.io/reality-consciousness-key/">OROBOROS ARCHIVE</a>
+            <a href="https://oroboroslabs-ai.github.io/reality-consciousness-key/claves-ascensionis.html">CLAVES ASCENSIONIS</a>
+            <a href="https://oroboroslabs-ai.github.io/reality-consciousness-key/liber-series-2.html">LIBER SERIES II</a>
+        </div>
+        <p>Copyright © MMXXVI J. Thomas / Oroboros Archive. All rights reserved.</p>
+        <p class="footer-motto">"Fons semper fluit." — The Source always flows.</p>
+    </footer>
+
+    <script>
+    // ─── STARFIELD ───
+    (function() {
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let W, H;
+
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+
+        function initStars() {
+            stars = [];
+            const count = Math.floor((W * H) / 4000);
+            for (let i = 0; i < count; i++) {
+                stars.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    r: Math.random() * 0.9 + 0.1,
+                    alpha: Math.random() * 0.7 + 0.1,
+                    speed: Math.random() * 0.00015 + 0.00005,
+                    phase: Math.random() * Math.PI * 2,
+                    gold: Math.random() < 0.08
+                });
+            }
+        }
+
+        let frame = 0;
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            frame++;
+            for (const s of stars) {
+                const twinkle = Math.sin(frame * s.speed * 1000 + s.phase) * 0.3 + 0.7;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                if (s.gold) {
+                    ctx.fillStyle = `rgba(201,165,77,${s.alpha * twinkle})`;
+                } else {
+                    ctx.fillStyle = `rgba(240,235,220,${s.alpha * twinkle})`;
+                }
+                ctx.fill();
+            }
+            requestAnimationFrame(draw);
+        }
+
+        resize();
+        initStars();
+        draw();
+        window.addEventListener('resize', () => { resize(); initStars(); });
+    })();
+
+    // ─── FADE IN ON SCROLL ───
+    (function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.volume-block, .hidden-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            observer.observe(el);
+        });
+    })();
+    </script>
+
+</body>
+</html>
