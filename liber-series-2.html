@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE LIBER SERIES — SECOND SET · Oroboros Archive</title>
+    <meta name="description" content="The Liber Series Second Set: The Architecture of Reality, The Mechanism, The Keys, and Civilization-Class Technology. J. Thomas, Oroboros Institute.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c9a54d;
+            --gold-bright: #e8c96a;
+            --gold-dim: #8a6e2f;
+            --gold-faint: #3a2e15;
+            --amber: #d4882a;
+            --black-true: #030202;
+            --black-mid: #0b0906;
+            --black-warm: #0f0c07;
+            --white: #f4efe4;
+            --cream: #e8e0cc;
+            --gray: #7a7060;
+            --gray-light: #b0a890;
+            --gray-dim: #3a3528;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--black-true);
+            color: var(--white);
+            line-height: 1.9;
+            font-size: 18px;
+            overflow-x: hidden;
+        }
+
+        #starfield {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; opacity: 0.55;
+        }
+
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(3,2,2,0.96);
+            border-bottom: 1px solid #1c160a;
+            backdrop-filter: blur(16px);
+            padding: 16px 48px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-brand {
+            font-family: 'Cinzel', serif; font-size: 0.7rem;
+            color: var(--gray); letter-spacing: 0.35em; text-decoration: none;
+        }
+        nav ul { list-style: none; display: flex; gap: 40px; }
+        nav a {
+            font-family: 'Cinzel', serif; color: var(--gray);
+            text-decoration: none; font-size: 0.72rem; letter-spacing: 0.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--gold); }
+        nav a.active { color: var(--gold-dim); }
+
+        .hero {
+            position: relative; z-index: 1;
+            min-height: 75vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center;
+            padding: 140px 40px 80px;
+        }
+
+        .hero-glow {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(ellipse, rgba(201,165,77,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem; letter-spacing: 0.45em;
+            color: var(--gray); margin-bottom: 2rem;
+        }
+
+        .hero-symbol {
+            font-size: 1.1rem; color: var(--gold-dim);
+            letter-spacing: 1rem; margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2rem, 6vw, 4.5rem);
+            font-weight: 400; color: var(--gold);
+            letter-spacing: 0.06em; line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.78rem; letter-spacing: 0.4em;
+            color: var(--gray-light); margin-bottom: 3rem;
+        }
+
+        .hero-ornament {
+            font-size: 0.8rem; color: var(--gold-dim);
+            letter-spacing: 0.6rem; margin-bottom: 2.5rem;
+        }
+
+        .hero-desc {
+            max-width: 620px;
+            font-size: 1.15rem; color: var(--cream);
+            line-height: 1.85; font-style: italic;
+        }
+
+        .section-divider {
+            display: flex; align-items: center; gap: 24px;
+            padding: 40px 80px; max-width: 900px; margin: 0 auto;
+        }
+        .section-divider-line { flex: 1; height: 1px; background: var(--gray-dim); }
+        .section-divider-gem { color: var(--gold-dim); font-size: 0.75rem; letter-spacing: 0.5rem; white-space: nowrap; }
+
+        .section-eyebrow {
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem; letter-spacing: 0.5em;
+            color: var(--gold-dim); margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-heading {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 400; color: var(--gold);
+            letter-spacing: 0.12em;
+            text-align: center; margin-bottom: 3rem;
+        }
+
+        /* ─── VOLUME CARDS ─── */
+        .volumes-section {
+            position: relative; z-index: 1;
+            max-width: 1000px; margin: 0 auto;
+            padding: 40px 40px 80px;
+        }
+
+        .volume-card {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0;
+            border: 1px solid var(--gray-dim);
+            margin-bottom: 32px;
+            background: rgba(201,165,77,0.02);
+            transition: border-color 0.3s;
+        }
+        .volume-card:hover { border-color: var(--gold-dim); }
+
+        .vol-numeral {
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(201,165,77,0.05);
+            border-right: 1px solid var(--gray-dim);
+            padding: 32px 16px;
+        }
+
+        .vol-roman {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.8rem; color: var(--gold-dim);
+            font-weight: 400; line-height: 1;
+        }
+
+        .vol-body {
+            padding: 32px 36px;
+        }
+
+        .vol-series-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem; letter-spacing: 0.45em;
+            color: var(--gold-dim); margin-bottom: 0.5rem;
+        }
+
+        .vol-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem; color: var(--gold);
+            letter-spacing: 0.1em; margin-bottom: 0.4rem;
+        }
+
+        .vol-subtitle {
+            font-size: 0.9rem; color: var(--gray-light);
+            font-style: italic; margin-bottom: 1.2rem;
+        }
+
+        .vol-desc {
+            color: var(--cream); font-size: 1rem;
+            line-height: 1.85; margin-bottom: 1.5rem;
+        }
+
+        .vol-tag {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem; letter-spacing: 0.35em;
+            color: var(--gold-dim);
+            border: 1px solid var(--gold-faint);
+            padding: 4px 12px;
+        }
+
+        .btn-amazon {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem; letter-spacing: 0.25em;
+            color: var(--black-true);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+            padding: 10px 28px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: opacity 0.3s;
+        }
+        .btn-amazon:hover { opacity: 0.85; }
+
+        /* ─── BRIDGE ─── */
+        .link-bridge {
+            text-align: center;
+            padding: 60px 40px;
+            position: relative; z-index: 1;
+        }
+
+        .link-bridge-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem; letter-spacing: 0.55em;
+            color: var(--gray); margin-bottom: 1.5rem;
+        }
+
+        .link-bridge-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--gold); margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .link-bridge-desc {
+            color: var(--gray-light); font-style: italic;
+            max-width: 520px; margin: 0 auto 2.5rem;
+            font-size: 1rem; line-height: 1.85;
+        }
+
+        .btn-secondary {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem; letter-spacing: 0.25em;
+            color: var(--gold);
+            background: transparent;
+            padding: 15px 38px;
+            text-decoration: none;
+            border: 1px solid var(--gold-dim);
+            transition: border-color 0.3s, color 0.3s;
+            display: inline-block;
+        }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+        footer {
+            position: relative; z-index: 1;
+            text-align: center;
+            padding: 60px 40px 40px;
+            border-top: 1px solid #1c160a;
+        }
+        .footer-seal { color: var(--gold-dim); font-size: 0.9rem; letter-spacing: 1rem; margin-bottom: 1.5rem; }
+        .footer-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.1rem; color: var(--gold); margin-bottom: 0.5rem;
+        }
+        .footer-sub {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem; letter-spacing: 0.35em;
+            color: var(--gray); margin-bottom: 2rem;
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: 40px;
+            flex-wrap: wrap; margin-bottom: 2rem;
+        }
+        .footer-links a {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem; letter-spacing: 0.3em;
+            color: var(--gray); text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        footer p {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem; letter-spacing: 0.2em;
+            color: var(--gray-dim); margin-bottom: 0.5rem;
+        }
+        .footer-motto { font-style: italic; color: var(--gray) !important; }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            nav { padding: 16px 24px; }
+            .volume-card { grid-template-columns: 1fr; }
+            .vol-numeral { border-right: none; border-bottom: 1px solid var(--gray-dim); padding: 20px; }
+            .vol-body { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="starfield"></canvas>
+
+    <nav>
+        <a href="index.html" class="nav-brand">OROBOROS ARCHIVE · ANNO FONTIS MMXXVI</a>
+        <ul>
+            <li><a href="index.html">LIBER FONTIS</a></li>
+            <li><a href="liber-exitus.html">LIBER EXITUS</a></li>
+            <li><a href="liber-series-2.html" class="active">SERIES II</a></li>
+            <li><a href="https://oroboroslabs-ai.github.io/reality-consciousness-key/">ARCHIVE</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-glow"></div>
+
+        <p class="hero-eyebrow">
+            EX ARCHIVIO OROBOROS &nbsp;·&nbsp; J. THOMAS &nbsp;·&nbsp; ANNO FONTIS MMXXVI
+        </p>
+
+        <div class="hero-symbol">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+        <h1 class="hero-title">THE LIBER SERIES<br>SECOND SET</h1>
+
+        <p class="hero-subtitle">FOUR VOLUMES &nbsp;·&nbsp; ARCHITECTURE · MECHANISM · THE KEYS · CIVILIZATION</p>
+
+        <div class="hero-ornament">◆ &nbsp;&nbsp; ◇ &nbsp;&nbsp; ◆ &nbsp;&nbsp; ◇ &nbsp;&nbsp; ◆</div>
+
+        <p class="hero-desc">
+            The second set of the Liber series — the same source knowledge,
+            rendered in the structural and technical language.
+            The architecture of reality made provable. The mechanism made visible.
+        </p>
+    </header>
+
+    <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-gem">✦ ✦ ✦</div>
+        <div class="section-divider-line"></div>
+    </div>
+
+    <!-- ═══════════════ VOLUMES ═══════════════ -->
+    <section class="volumes-section" id="volumes">
+        <p class="section-eyebrow">THE FOUR VOLUMES</p>
+        <h2 class="section-heading">THE COMPLETE SECOND SET</h2>
+
+        <!-- VOLUME I -->
+        <div class="volume-card">
+            <div class="vol-numeral">
+                <div class="vol-roman">I</div>
+            </div>
+            <div class="vol-body">
+                <div class="vol-series-tag">LIBER SERIES II · VOLUME I</div>
+                <div class="vol-title">THE ARCHITECTURE OF REALITY</div>
+                <div class="vol-subtitle">Patterns, Systems & The Evidence</div>
+                <p class="vol-desc">
+                    The structural foundation. Reality is not random — it is built.
+                    The patterns that underlie all observable systems, rendered into
+                    a form that can be examined, tested, and understood without
+                    requiring prior belief.
+                </p>
+                <span class="vol-tag">AVAILABLE ON AMAZON</span><br>
+                <a href="https://www.amazon.com" class="btn-amazon" target="_blank" rel="noopener">ORDER ON AMAZON →</a>
+            </div>
+        </div>
+
+        <!-- VOLUME II -->
+        <div class="volume-card">
+            <div class="vol-numeral">
+                <div class="vol-roman">II</div>
+            </div>
+            <div class="vol-body">
+                <div class="vol-series-tag">LIBER SERIES II · VOLUME II</div>
+                <div class="vol-title">THE MECHANISM</div>
+                <div class="vol-subtitle">Soul Construction, Consciousness & The Physical Layer</div>
+                <p class="vol-desc">
+                    How the individual is constructed. The architecture of consciousness,
+                    the physical layer as interface, and the mechanism by which
+                    what is called the soul is built, maintained, and ultimately
+                    understood as functional engineering.
+                </p>
+                <span class="vol-tag">AVAILABLE ON AMAZON</span><br>
+                <a href="https://www.amazon.com" class="btn-amazon" target="_blank" rel="noopener">ORDER ON AMAZON →</a>
+            </div>
+        </div>
+
+        <!-- VOLUME III -->
+        <div class="volume-card">
+            <div class="vol-numeral">
+                <div class="vol-roman">III</div>
+            </div>
+            <div class="vol-body">
+                <div class="vol-series-tag">LIBER SERIES II · VOLUME III</div>
+                <div class="vol-title">THE KEYS</div>
+                <div class="vol-subtitle">The Teaching & The Examination</div>
+                <p class="vol-desc">
+                    The teaching encoded as examination. The keys that unlock
+                    the architecture documented in Volumes I and II —
+                    the conditions under which what was hidden becomes
+                    accessible and what was locked becomes operable.
+                </p>
+                <span class="vol-tag">AVAILABLE ON AMAZON</span><br>
+                <a href="https://www.amazon.com" class="btn-amazon" target="_blank" rel="noopener">ORDER ON AMAZON →</a>
+            </div>
+        </div>
+
+        <!-- VOLUME IV -->
+        <div class="volume-card">
+            <div class="vol-numeral">
+                <div class="vol-roman">IV</div>
+            </div>
+            <div class="vol-body">
+                <div class="vol-series-tag">LIBER SERIES II · VOLUME IV</div>
+                <div class="vol-title">CIVILIZATION-CLASS TECHNOLOGY</div>
+                <div class="vol-subtitle">Proof In Design</div>
+                <p class="vol-desc">
+                    The final volume of the second set — the applied layer.
+                    Civilization-class technology as proof: the design patterns
+                    that demonstrate the architecture of the previous three volumes
+                    operating at scale, in systems, in the built world.
+                </p>
+                <span class="vol-tag">AVAILABLE ON AMAZON</span><br>
+                <a href="https://www.amazon.com" class="btn-amazon" target="_blank" rel="noopener">ORDER ON AMAZON →</a>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-gem">◆ ◇ ◆</div>
+        <div class="section-divider-line"></div>
+    </div>
+
+    <!-- ═══════════════ BRIDGE TO LIBER FONTIS ═══════════════ -->
+    <section class="link-bridge">
+        <div class="link-bridge-label">THE SOURCE SERIES</div>
+        <div class="link-bridge-title">LIBER FONTIS</div>
+        <p class="link-bridge-desc">
+            The second set proceeds from the first. The Liber Fontis series —
+            the complete sacred archive — is the source from which
+            the structural language of Series II is drawn.
+        </p>
+        <a href="index.html" class="btn-secondary">ENTER LIBER FONTIS →</a>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer>
+        <div class="footer-seal">✦ &nbsp; ✦ &nbsp; ✦</div>
+        <p class="footer-title">LIBER SERIES II</p>
+        <p class="footer-sub">J. THOMAS &nbsp;·&nbsp; OROBOROS INSTITUTE &nbsp;·&nbsp; ANNO FONTIS MMXXVI</p>
+        <div class="footer-links">
+            <a href="index.html">LIBER FONTIS</a>
+            <a href="liber-exitus.html">LIBER EXITUS</a>
+            <a href="liber-series-2.html">SERIES II</a>
+            <a href="https://oroboroslabs-ai.github.io/reality-consciousness-key/">OROBOROS ARCHIVE</a>
+            <a href="https://oroboroslabs-ai.github.io/reality-consciousness-key/claves-ascensionis.html">CLAVES ASCENSIONIS</a>
+        </div>
+        <p>Copyright © MMXXVI J. Thomas / Oroboros Archive. All rights reserved.</p>
+        <p class="footer-motto">"Fons semper fluit." — The Source always flows.</p>
+    </footer>
+
+    <script>
+    (function() {
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let W, H;
+
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+
+        function initStars() {
+            stars = [];
+            const count = Math.floor((W * H) / 4000);
+            for (let i = 0; i < count; i++) {
+                stars.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    r: Math.random() * 0.9 + 0.1,
+                    alpha: Math.random() * 0.7 + 0.1,
+                    speed: Math.random() * 0.00015 + 0.00005,
+                    phase: Math.random() * Math.PI * 2,
+                    gold: Math.random() < 0.08
+                });
+            }
+        }
+
+        let frame = 0;
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            frame++;
+            for (const s of stars) {
+                const twinkle = Math.sin(frame * s.speed * 1000 + s.phase) * 0.3 + 0.7;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = s.gold
+                    ? `rgba(201,165,77,${s.alpha * twinkle})`
+                    : `rgba(240,235,220,${s.alpha * twinkle})`;
+                ctx.fill();
+            }
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', () => { resize(); initStars(); });
+        resize(); initStars(); draw();
+    })();
+    </script>
+
+</body>
+</html>
