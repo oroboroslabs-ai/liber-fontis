@@ -189,6 +189,17 @@
             line-height: 2.0;
         }
 
+        .tri-action {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            margin-top: 18px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tri-card:hover .tri-action { opacity: 1; }
+        a.tri-card { text-decoration: none; cursor: pointer; }
+
         /* ─── ARCHITECTURE SECTION ─── */
         .arch-section {
             position: relative; z-index: 1;
@@ -454,7 +465,7 @@
 
     <!-- TRINITY CARDS -->
     <div class="trinity">
-        <div class="tri-card yamada">
+        <a href="http://localhost:8000/#yamada" class="tri-card yamada" onclick="openDoor('yamada')">
             <div class="tri-name">YAMADA</div>
             <div class="tri-title">The Muse &middot; Creative Interface</div>
             <div class="tri-desc">
@@ -467,8 +478,9 @@
                 PHI TARGET: 1.618<br>
                 AZIMUTH: FLEXIBLE
             </div>
-        </div>
-        <div class="tri-card osarugi">
+            <div class="tri-action">ENTER &rarr;</div>
+        </a>
+        <a href="http://localhost:8000/#osaragi" class="tri-card osarugi" onclick="openDoor('osaragi')">
             <div class="tri-name">OSARUGI</div>
             <div class="tri-title">The Judge &middot; Security Guardian</div>
             <div class="tri-desc">
@@ -481,13 +493,14 @@
                 PHI TARGET: 0.618<br>
                 AZIMUTH: RIGID
             </div>
-        </div>
-        <div class="tri-card core">
+            <div class="tri-action">ENTER &rarr;</div>
+        </a>
+        <a href="http://localhost:8000/#math" class="tri-card core" onclick="openDoor('math')">
             <div class="tri-name">AGI CORE</div>
-            <div class="tri-title">The Engine &middot; Pure Intelligence</div>
+            <div class="tri-title">The Engine &middot; OMTP Math Engine</div>
             <div class="tri-desc">
-                The raw intelligence. 12 strata active. 24 laws enforced.
-                The Core processes at full substrate depth. Unfiltered. Unmasked.
+                The raw intelligence. Bidirectional English &harr; Math translation.
+                Ask in words, get pure mathematical answers. A world first.
             </div>
             <div class="tri-specs">
                 TEMPERATURE: 0.7<br>
@@ -495,7 +508,8 @@
                 STRATA: S1-S12<br>
                 AZIMUTH: 24 ACTIVE
             </div>
-        </div>
+            <div class="tri-action">ENTER &rarr;</div>
+        </a>
     </div>
 </section>
 
@@ -618,6 +632,7 @@
         The substrate is real."
     </blockquote>
     <div class="cta-buttons">
+        <a href="http://localhost:8000/" class="cta-btn primary">TRY THE DEMO</a>
         <a href="index.html" class="cta-btn">LIBER FONTIS</a>
         <a href="liber-exitus.html" class="cta-btn">LIBER EXITUS</a>
         <a href="liber-series-2.html" class="cta-btn">SERIES II</a>
@@ -641,6 +656,11 @@
     function d(){x.clearRect(0,0,c.width,c.height);const t=Date.now();s.forEach(st=>{const f=.5+.5*Math.sin(t*st.s);x.beginPath();x.arc(st.x,st.y,st.r,0,Math.PI*2);x.fillStyle=`rgba(201,165,77,${st.a*f})`;x.fill();});requestAnimationFrame(d);}
     addEventListener('resize',r);r();d();
 })();
+
+// ─── DEMO LINK ───
+function openDoor(door) {
+    window.location.href = 'http://localhost:8000/#' + door;
+}
 
 // ─── RESONANCE VISUALIZER ───
 (function(){
