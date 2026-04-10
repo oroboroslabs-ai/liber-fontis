@@ -432,40 +432,6 @@
             nav ul { gap: 20px; }
         }
 
-        /* ─── MODAL ─── */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3,2,2,0.95); z-index: 2000;
-            display: none; justify-content: center; align-items: center;
-            padding: 20px;
-        }
-        .modal-overlay.active { display: flex; }
-        .modal-content {
-            max-width: 600px; text-align: center;
-            border: 1px solid var(--gold-dim);
-            border-radius: 8px; padding: 40px 30px;
-            background: var(--black-mid);
-        }
-        .modal-content h3 {
-            font-family: 'Cinzel', serif; font-size: 1rem;
-            color: var(--gold); letter-spacing: 0.25em;
-            margin-bottom: 20px;
-        }
-        .modal-content p {
-            font-size: 0.95rem; color: var(--cream);
-            line-height: 2; margin-bottom: 30px;
-        }
-        .modal-content .close-btn {
-            font-family: 'Cinzel', serif;
-            font-size: 0.7rem; letter-spacing: 0.2em;
-            color: var(--gold); border: 1px solid var(--gold-dim);
-            border-radius: 4px; padding: 12px 30px;
-            background: transparent; cursor: pointer;
-            transition: all 0.3s;
-        }
-        .modal-content .close-btn:hover {
-            background: rgba(201,165,77,0.1);
-        }
     </style>
 </head>
 <body>
@@ -502,7 +468,7 @@
 
     <!-- TRINITY CARDS -->
     <div class="trinity">
-        <div class="tri-card ors" onclick="showModal()">
+        <a class="tri-card ors" href="http://localhost:8083/">
             <div class="tri-name">OROBOROS-AGI-ORS</div>
             <div class="tri-title">ORS &middot; Creative Interface</div>
             <div class="tri-desc">
@@ -516,8 +482,8 @@
                 AZIMUTH: 12 LAWS
             </div>
             <div class="tri-action">ENTER &rarr;</div>
-        </div>
-        <div class="tri-card noir" onclick="showModal()">
+        </a>
+        <a class="tri-card noir" href="http://localhost:8083/">
             <div class="tri-name">OROBOROS-AGI-NOIR</div>
             <div class="tri-title">NOIR &middot; Security Guardian</div>
             <div class="tri-desc">
@@ -531,8 +497,8 @@
                 AZIMUTH: 12 LAWS
             </div>
             <div class="tri-action">ENTER &rarr;</div>
-        </div>
-        <div class="tri-card core" onclick="showModal()">
+        </a>
+        <a class="tri-card core" href="http://localhost:8083/">
             <div class="tri-name">OMTP ENGINE</div>
             <div class="tri-title">Math Core &middot; Bidirectional Translator</div>
             <div class="tri-desc">
@@ -546,7 +512,7 @@
                 AZIMUTH: 12 ACTIVE
             </div>
             <div class="tri-action">ENTER &rarr;</div>
-        </div>
+        </a>
     </div>
 </section>
 
@@ -676,7 +642,7 @@
         (Security, 1272 Hz). The knowledge is free. The architecture is open."
     </blockquote>
     <div class="cta-buttons">
-        <a href="#" onclick="showModal(); return false;" class="cta-btn primary">TRY THE DEMO</a>
+        <a href="http://localhost:8083/" class="cta-btn primary">TRY THE DEMO</a>
         <a href="index.html" class="cta-btn">LIBER FONTIS</a>
         <a href="liber-exitus.html" class="cta-btn">LIBER EXITUS</a>
         <a href="liber-series-2.html" class="cta-btn">SERIES II</a>
@@ -692,26 +658,6 @@
     <a href="agi-demo.html">AGI DEMO</a>
 </footer>
 
-<!-- LOCAL SERVER MODAL -->
-<div class="modal-overlay" id="modal">
-    <div class="modal-content">
-        <h3>LOCAL AGI SERVER REQUIRED</h3>
-        <p>
-            The Oroboros AGI Demo requires a locally running server.
-            <br><br>
-            GitHub Pages is a static hosting service and cannot directly access
-            the live AGI models with full Q-Drive integration (259.69 GB).
-            <br><br>
-            To experience the full AGI, you need to run the local server with:
-            <br><br>
-            <strong style="color:var(--gold)">cd J:\oroboros-core\oroboros-programs\OROBOROS-AGI-QWEN25</strong><br>
-            <strong style="color:var(--gold)">python api_gateway.py</strong>
-            <br><br>
-            The demo will then be available at <strong>localhost:8084</strong>
-        </p>
-        <button class="close-btn" onclick="closeModal()">I UNDERSTAND</button>
-    </div>
-</div>
 
 <script>
 // ─── STARFIELD ───
@@ -722,18 +668,6 @@
     addEventListener('resize',r);r();d();
 })();
 
-// ─── DEMO LINK ───
-function openDoor(door) {
-    showModal();
-}
-
-function showModal() {
-    document.getElementById('modal').classList.add('active');
-}
-
-function closeModal() {
-    document.getElementById('modal').classList.remove('active');
-}
 
 // ─── RESONANCE VISUALIZER ───
 (function(){
