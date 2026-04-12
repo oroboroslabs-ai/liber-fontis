@@ -3,24 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OROBOROS Models — XIRON & META · Oroboros Lab</title>
+    <title>OROBOROS XIRON & META — Intelligence Models | Oroboros Labs</title>
     <meta name="description" content="OROBOROS XIRON: World's first 10 meta-model orchestration with 24-24-24 LATIS temporal prediction architecture. OROBOROS META: Autonomous recursive reasoning engine.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050508;
-            --bg-card: rgba(255,255,255,0.03);
-            --border: rgba(255,255,255,0.08);
-            --text: #e0e0e0;
+            --bg-primary: #050508;
+            --bg-secondary: #0a0a12;
+            --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --text-muted: #606070;
+            --card-bg: rgba(20, 20, 35, 0.8);
+            --card-border: rgba(255, 255, 255, 0.08);
             --cyan: #00f0ff;
-            --cyan-dim: #0090a0;
             --purple: #8b5cf6;
-            --purple-dim: #5e3db5;
-            --xiron-color: #00f0ff;
-            --meta-color: #8b5cf6;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,438 +25,548 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.7;
-            font-size: 16px;
-            overflow-x: hidden;
         }
 
         /* ─── NAV ─── */
-        nav {
+        .navbar {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(5,5,8,0.9);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(16px);
-            padding: 16px 48px;
-            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5,5,8,0.85);
+            border-bottom: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            padding: 0 48px;
+            height: 70px;
+            display: flex; align-items: center; justify-content: space-between;
         }
         .nav-brand {
-            font-size: 0.75rem; font-weight: 700;
-            color: var(--text-muted); letter-spacing: 0.3em; text-decoration: none;
+            font-size: 0.85rem; font-weight: 700;
+            color: var(--text-secondary); letter-spacing: 0.2em; text-decoration: none;
             text-transform: uppercase;
+            transition: color 0.3s;
         }
         .nav-brand:hover { color: var(--cyan); }
-        nav ul { list-style: none; display: flex; gap: 36px; }
-        nav a {
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
             color: var(--text-muted); text-decoration: none;
-            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
-            text-transform: uppercase; transition: color 0.3s;
+            font-size: 0.85rem; font-weight: 500;
+            transition: color 0.3s;
         }
-        nav a:hover { color: var(--cyan); }
-        nav a.active { color: var(--cyan); }
+        .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
 
         /* ─── HERO ─── */
         .hero {
             min-height: 100vh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            text-align: center;
-            padding: 120px 40px 60px;
+            display: flex; align-items: center;
+            padding: 180px 24px 100px;
             position: relative; overflow: hidden;
             background:
-                radial-gradient(ellipse at 30% 40%, rgba(0,240,255,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 60%, rgba(139,92,246,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 40%, rgba(0,240,255,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(139,92,246,0.08) 0%, transparent 50%),
                 linear-gradient(180deg, #050508 0%, #0a0a12 100%);
         }
-
         .hero::before {
             content: '';
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.008) 2px, rgba(255,255,255,0.008) 4px);
-            pointer-events: none;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.01) 2px, rgba(255,255,255,0.01) 4px);
+            pointer-events: none; z-index: 1;
         }
 
-        .hero-label {
-            font-size: 0.75rem; font-weight: 600;
-            letter-spacing: 0.4em; text-transform: uppercase;
-            color: var(--cyan-dim); margin-bottom: 20px;
+        .hero-content {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: center;
             position: relative; z-index: 2;
         }
 
-        .hero h1 {
-            font-size: clamp(2.8rem, 8vw, 5rem);
-            font-weight: 900; letter-spacing: -2px;
-            line-height: 1.05; margin-bottom: 20px;
-            position: relative; z-index: 2;
+        .hero-text h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 800; line-height: 1.05;
+            margin-bottom: 24px; letter-spacing: -2px;
         }
-        .hero h1 .xiron {
-            background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
+        .hero-text h1 .line1 {
+            display: block;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .hero h1 .meta {
-            background: linear-gradient(135deg, #fff 0%, var(--purple) 100%);
+        .hero-text h1 .line2 {
+            display: block;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        .hero-desc {
-            font-size: 1.1rem; font-weight: 300;
-            color: var(--text-secondary);
-            max-width: 680px; line-height: 1.8;
-            position: relative; z-index: 2;
-            margin-bottom: 40px;
+        .hero-tagline {
+            font-size: 1.4rem; color: var(--text-secondary);
+            margin-bottom: 16px; font-weight: 300;
+        }
+        .hero-subtitle {
+            font-size: 1rem; color: var(--text-muted);
+            margin-bottom: 40px; text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        .hero-divider {
-            width: 60px; height: 2px;
-            background: linear-gradient(90deg, var(--cyan), var(--purple));
-            position: relative; z-index: 2;
-            border-radius: 1px;
+        .hero-stats {
+            display: flex; gap: 48px; margin-bottom: 40px;
         }
-
-        /* ─── MODEL CARDS ─── */
-        .models-section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 40px 80px;
-        }
-
-        .model-card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 48px;
-            background: var(--bg-card);
-            backdrop-filter: blur(8px);
-            margin-bottom: 40px;
-            display: flex;
-            gap: 48px;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        .model-card:hover { transform: translateY(-3px); }
-        .model-card.xiron:hover { border-color: rgba(0,240,255,0.2); box-shadow: 0 0 40px rgba(0,240,255,0.06); }
-        .model-card.meta:hover { border-color: rgba(139,92,246,0.2); box-shadow: 0 0 40px rgba(139,92,246,0.06); }
-
-        .model-content { flex: 1; }
-
-        .model-label {
-            font-size: 0.65rem; font-weight: 600;
-            letter-spacing: 0.3em; text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-        .xiron .model-label { color: var(--cyan-dim); }
-        .meta .model-label { color: var(--purple-dim); }
-
-        .model-name {
-            font-size: 2rem; font-weight: 800;
-            letter-spacing: -1px; margin-bottom: 4px;
-        }
-        .xiron .model-name .hl {
+        .stat-value {
+            font-size: 2.5rem; font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
             background: linear-gradient(135deg, #fff, var(--cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .meta .model-name .hl {
-            background: linear-gradient(135deg, #fff, var(--purple));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        .stat-label {
+            font-size: 0.85rem; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
-        .model-arch {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem; letter-spacing: 0.1em;
-            margin-bottom: 20px;
+        .hero-cta {
+            display: flex; gap: 16px;
         }
-        .xiron .model-arch { color: var(--cyan-dim); }
-        .meta .model-arch { color: var(--purple-dim); }
-
-        .model-desc {
-            font-size: 0.95rem; font-weight: 400;
-            color: var(--text-secondary);
-            line-height: 1.8; margin-bottom: 16px;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: #000; padding: 16px 32px; border-radius: 8px;
+            font-weight: 700; text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 30px rgba(0,240,255,0.3);
         }
-        .xiron .model-desc strong { color: var(--cyan); font-weight: 600; }
-        .meta .model-desc strong { color: var(--purple); font-weight: 600; }
-
-        .model-tags {
-            display: flex; flex-wrap: wrap;
-            gap: 6px; margin-bottom: 20px;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(0,240,255,0.4);
         }
-        .mtag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem; letter-spacing: 0.05em;
-            color: var(--text-secondary);
-            border-radius: 4px; padding: 4px 10px;
-        }
-        .xiron .mtag { border: 1px solid rgba(0,240,255,0.1); background: rgba(0,240,255,0.03); }
-        .meta .mtag { border: 1px solid rgba(139,92,246,0.1); background: rgba(139,92,246,0.03); }
-
-        .model-badge {
-            border-radius: 6px; padding: 12px 18px;
-            display: inline-block; margin-bottom: 18px;
-        }
-        .xiron .model-badge { border: 1px solid rgba(0,240,255,0.15); background: rgba(0,240,255,0.04); }
-        .meta .model-badge { border: 1px solid rgba(139,92,246,0.15); background: rgba(139,92,246,0.04); }
-
-        .badge-text { font-size: 0.85rem; font-weight: 600; color: var(--text); }
-        .badge-sub {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem; letter-spacing: 0.1em; margin-top: 2px;
-        }
-        .xiron .badge-sub { color: var(--cyan-dim); }
-        .meta .badge-sub { color: var(--purple-dim); }
-
-        .ollama-links { display: flex; gap: 12px; flex-wrap: wrap; }
-        .ollama-btn {
-            font-size: 0.75rem; font-weight: 600;
-            letter-spacing: 0.1em; padding: 10px 20px;
-            border-radius: 6px; text-decoration: none;
+        .btn-secondary {
+            background: transparent; color: var(--text-primary);
+            padding: 14px 30px; border-radius: 8px;
+            font-weight: 600; text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.2);
             transition: all 0.3s;
         }
-        .xiron .ollama-btn {
-            color: var(--cyan); border: 1px solid rgba(0,240,255,0.2);
-            background: rgba(0,240,255,0.04);
+        .btn-secondary:hover {
+            border-color: var(--cyan);
+            background: rgba(0,240,255,0.1);
         }
-        .xiron .ollama-btn:hover { background: rgba(0,240,255,0.1); box-shadow: 0 0 16px rgba(0,240,255,0.1); }
-        .meta .ollama-btn {
-            color: var(--purple); border: 1px solid rgba(139,92,246,0.2);
-            background: rgba(139,92,246,0.04);
+
+        /* Hero droids */
+        .hero-visual {
+            display: flex; gap: 40px; justify-content: center;
         }
-        .meta .ollama-btn:hover { background: rgba(139,92,246,0.1); box-shadow: 0 0 16px rgba(139,92,246,0.1); }
-
-        /* ─── DROID VISUAL ─── */
-        .droid-visual { flex-shrink: 0; }
-
-        .droid-circle {
-            width: 200px; height: 200px; border-radius: 50%;
+        .specter {
+            width: 180px; height: 260px;
             position: relative;
-            display: flex; justify-content: center; align-items: center;
+            animation: float-specter 6s ease-in-out infinite;
         }
-        .dc-xiron {
-            background: radial-gradient(circle, #080a10, #050608);
-            border: 1px solid rgba(0,240,255,0.08);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 0 20px rgba(0,240,255,0.03);
-        }
-        .dc-meta {
-            background: radial-gradient(circle, #0c0a10, #080610);
-            border: 1px solid rgba(139,92,246,0.08);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 0 20px rgba(139,92,246,0.03);
+        .specter:nth-child(2) { animation-delay: -3s; }
+
+        @keyframes float-specter {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
-        .droid-glow {
-            position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
-            width: 80px; height: 80px; filter: blur(10px); pointer-events: none;
+        .specter-body {
+            position: absolute; top: 40px; left: 50%;
+            transform: translateX(-50%);
+            width: 110px; height: 160px;
+            background: linear-gradient(180deg, rgba(20,20,35,0.95) 0%, rgba(10,10,20,0.8) 50%, transparent 100%);
+            border-radius: 55px 55px 28px 28px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(0,240,255,0.08), inset 0 0 40px rgba(0,0,0,0.5);
         }
-        .dg-x { background: radial-gradient(circle, rgba(0,240,255,0.1), transparent 70%); }
-        .dg-m { background: radial-gradient(circle, rgba(139,92,246,0.1), transparent 70%); }
-
-        .droid-head {
-            width: 80px; height: 96px;
-            border-radius: 18px 18px 26px 26px;
-            position: relative; margin-top: 10px;
-            box-shadow: 0 0 28px rgba(0,0,0,0.5);
+        .specter-face {
+            position: absolute; top: 50px; left: 50%;
+            transform: translateX(-50%); width: 90px; height: 50px;
         }
-        .dh-x { background: radial-gradient(ellipse at 50% 40%, #0a0c14, #040508); }
-        .dh-m { background: radial-gradient(ellipse at 50% 40%, #0e0c16, #06040a); }
-
-        .d-eyes { position: absolute; top: 42%; left: 50%; transform: translate(-50%,-50%); display: flex; gap: 10px; }
-        .de-x {
-            width: 14px; height: 3px; border-radius: 1px;
-            background: rgba(0,240,255,0.8);
-            box-shadow: 0 0 6px rgba(0,240,255,0.6), 0 0 16px rgba(0,240,255,0.3), 0 0 30px rgba(0,240,255,0.15);
+        .specter-eyes {
+            display: flex; justify-content: center; gap: 24px;
         }
-        .de-m {
-            width: 14px; height: 3px; border-radius: 1px;
-            background: rgba(139,92,246,0.8);
-            box-shadow: 0 0 6px rgba(139,92,246,0.6), 0 0 16px rgba(139,92,246,0.3), 0 0 30px rgba(139,92,246,0.15);
+        .specter-eye {
+            width: 18px; height: 6px; border-radius: 50%;
+            animation: eye-glow 3s ease-in-out infinite;
+        }
+        .specter-eye.cyan {
+            background: #fff;
+            box-shadow: 0 0 10px #fff, 0 0 20px var(--cyan), 0 0 30px var(--cyan);
+        }
+        .specter-eye.purple {
+            background: #fff;
+            box-shadow: 0 0 10px #fff, 0 0 20px var(--purple), 0 0 30px var(--purple);
+        }
+        @keyframes eye-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .specter-mouth {
+            margin-top: 18px; height: 4px; border-radius: 2px;
+            margin-left: auto; margin-right: auto;
+        }
+        .specter-mouth.cyan { width: 28px; background: #fff; box-shadow: 0 0 8px var(--cyan); }
+        .specter-mouth.purple { width: 22px; background: #fff; box-shadow: 0 0 8px var(--purple); }
+
+        .specter-icon {
+            position: absolute; top: 10px; left: 50%;
+            transform: translateX(-50%); width: 36px; height: 36px;
+        }
+        .specter-icon svg {
+            width: 100%; height: 100%;
+            fill: none; stroke-width: 2;
+        }
+        .specter-icon.cyan svg { stroke: var(--cyan); filter: drop-shadow(0 0 8px var(--cyan)); }
+        .specter-icon.purple svg { stroke: var(--purple); filter: drop-shadow(0 0 8px var(--purple)); }
+
+        .specter-label {
+            position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px;
+            white-space: nowrap;
+        }
+        .specter-label.cyan { color: var(--cyan); }
+        .specter-label.purple { color: var(--purple); }
+
+        /* ─── PRODUCTS SECTION ─── */
+        .products-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #0a0a12 0%, #050508 100%);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        .section-header {
+            text-align: center; margin-bottom: 80px;
+        }
+        .section-header h2 {
+            font-size: 2.5rem; margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff, var(--cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .section-header p { color: var(--text-secondary); font-size: 1.1rem; }
+
+        .products-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;
         }
 
-        .dm { position: absolute; top: 63%; left: 50%; transform: translateX(-50%); }
-        .dm-x { width: 16px; height: 2px; background: rgba(0,240,255,0.3); box-shadow: 0 0 4px rgba(0,240,255,0.2); border-radius: 1px; }
-        .dm-m { width: 10px; height: 5px; border-bottom: 1.5px solid rgba(139,92,246,0.3); border-radius: 0 0 50% 50%; background: transparent; }
-
-        .d-visor { position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 24px; height: 26px; z-index: 3; }
-        .d-visor svg { width: 24px; height: 26px; }
-        .dv-x svg path { fill: rgba(0,240,255,0.06); stroke: rgba(0,240,255,0.35); stroke-width: 1; filter: drop-shadow(0 0 4px rgba(0,240,255,0.3)); }
-        .dv-m svg path { fill: rgba(139,92,246,0.06); stroke: rgba(139,92,246,0.35); stroke-width: 1; filter: drop-shadow(0 0 4px rgba(139,92,246,0.3)); }
-
-        .x-sensor { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 12px; background: linear-gradient(to top, rgba(0,240,255,0.1), rgba(0,240,255,0.4)); border-radius: 1px; }
-        .x-sensor::after { content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: rgba(0,240,255,0.5); box-shadow: 0 0 4px rgba(0,240,255,0.4); }
-        .xl, .xr { position: absolute; top: 40%; width: 14px; height: 1.5px; border-radius: 1px; }
-        .xl { left: -20px; background: linear-gradient(to left, rgba(0,240,255,0.3), transparent); }
-        .xr { right: -20px; background: linear-gradient(to right, rgba(0,240,255,0.3), transparent); }
-
-        .m-halo { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 36px; height: 18px; border: 1px solid rgba(139,92,246,0.2); border-bottom: none; border-radius: 18px 18px 0 0; }
-        .m-orb { position: absolute; top: 38%; width: 7px; height: 7px; border-radius: 50%; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.18); }
-        .m-orb-l { left: -14px; }
-        .m-orb-r { right: -14px; }
-
-        .orbit-ring {
-            position: absolute; width: 230px; height: 230px; border-radius: 50%;
-            border: 1px solid rgba(0,240,255,0.04);
-            top: 50%; left: 50%; transform: translate(-50%,-50%);
-            animation: orbit 20s linear infinite;
+        .product-card {
+            background: linear-gradient(135deg, rgba(20,20,35,0.8) 0%, rgba(10,10,20,0.9) 100%);
+            border: 1px solid var(--card-border);
+            border-radius: 24px; padding: 48px;
+            position: relative; overflow: hidden;
+            transition: all 0.4s ease;
         }
-        .orbit-node { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: rgba(0,240,255,0.4); box-shadow: 0 0 4px rgba(0,240,255,0.3); }
-        .orbit-node:nth-child(1) { top: -2px; left: 50%; }
-        .orbit-node:nth-child(2) { bottom: -2px; left: 50%; }
-        .orbit-node:nth-child(3) { top: 50%; right: -2px; }
-        .orbit-node:nth-child(4) { top: 50%; left: -2px; }
-        .orbit-node:nth-child(5) { top: 14%; right: 14%; }
-        @keyframes orbit { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
-
-        .pulse-ring {
-            position: absolute; width: 210px; height: 210px; border-radius: 50%;
-            border: 1px solid rgba(139,92,246,0.05);
-            top: 50%; left: 50%; transform: translate(-50%,-50%);
-            animation: pulse 3s ease-in-out infinite;
+        .product-card::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: var(--card-accent);
         }
-        .pulse-ring-2 { animation-delay: 1.5s; }
-        @keyframes pulse {
-            0% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%,-50%) scale(1.3); opacity: 0; }
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--card-accent);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .product-card.xiron { --card-accent: var(--cyan); }
+        .product-card.meta-card { --card-accent: var(--purple); }
+
+        .product-icon {
+            width: 80px; height: 80px; border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--card-accent), rgba(255,255,255,0.1));
+        }
+        .product-icon svg {
+            width: 40px; height: 40px;
+            fill: none; stroke: #000; stroke-width: 2;
+        }
+
+        .product-card h3 {
+            font-size: 1.75rem; margin-bottom: 16px; color: #fff;
+        }
+        .product-card p {
+            color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;
+        }
+        .product-card p strong { color: var(--card-accent); }
+
+        .product-features {
+            list-style: none; margin-bottom: 32px;
+        }
+        .product-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; gap: 12px;
+            color: var(--text-secondary);
+        }
+        .product-features li::before {
+            content: ''; width: 8px; height: 8px;
+            background: var(--card-accent); border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .product-badge {
+            display: inline-block; padding: 8px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--card-accent);
+            border-radius: 20px; font-size: 12px;
+            font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--card-accent);
+            margin-bottom: 16px;
+        }
+
+        .product-link {
+            display: inline-block; padding: 12px 24px;
+            border-radius: 8px; text-decoration: none;
+            font-weight: 600; font-size: 0.9rem;
+            transition: all 0.3s; margin-right: 8px; margin-top: 8px;
+        }
+        .xiron .product-link {
+            background: rgba(0,240,255,0.1);
+            color: var(--cyan);
+            border: 1px solid rgba(0,240,255,0.2);
+        }
+        .xiron .product-link:hover {
+            background: rgba(0,240,255,0.2);
+            box-shadow: 0 0 20px rgba(0,240,255,0.15);
+        }
+        .meta-card .product-link {
+            background: rgba(139,92,246,0.1);
+            color: var(--purple);
+            border: 1px solid rgba(139,92,246,0.2);
+        }
+        .meta-card .product-link:hover {
+            background: rgba(139,92,246,0.2);
+            box-shadow: 0 0 20px rgba(139,92,246,0.15);
+        }
+
+        /* ─── FEATURES SECTION ─── */
+        .features-section {
+            padding: 120px 0; background: var(--bg-primary);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .feature-card {
+            background: linear-gradient(135deg, rgba(20,20,35,0.6) 0%, rgba(10,10,20,0.8) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px; padding: 32px;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            border-color: rgba(0,240,255,0.3);
+            transform: translateY(-4px);
+        }
+        .feature-card h4 { font-size: 1.1rem; margin-bottom: 12px; color: #fff; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+        .feature-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; font-size: 24px;
         }
 
         /* ─── FOOTER ─── */
         footer {
-            text-align: center; padding: 40px;
-            border-top: 1px solid var(--border);
+            padding: 60px 24px; text-align: center;
+            border-top: 1px solid var(--card-border);
+            background: var(--bg-primary);
         }
         footer p {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem; color: var(--text-muted);
-            letter-spacing: 0.1em;
+            font-size: 0.85rem; color: var(--text-muted);
         }
 
-        @media (max-width: 768px) {
-            .model-card { flex-direction: column; padding: 32px 24px; }
-            .hero h1 { font-size: 2.4rem; }
-            nav { padding: 12px 20px; }
-            nav ul { gap: 20px; }
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-stats { justify-content: center; }
+            .hero-cta { justify-content: center; }
+            .hero-visual { margin-top: 40px; }
+            .products-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<nav>
-    <a class="nav-brand" href="https://oroboroslab.github.io/">OROBOROS LABS</a>
-    <ul>
-        <li><a href="agi-demo.html">AGI</a></li>
-        <li><a href="models.html" class="active">MODELS</a></li>
+<nav class="navbar">
+    <a class="nav-brand" href="https://oroboroslab.github.io/">Oroboros Labs</a>
+    <ul class="nav-links">
+        <li><a href="agi-demo.html">AGI Demo</a></li>
+        <li><a href="models.html" class="active">Models</a></li>
     </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-    <div class="hero-label">Introducing Oroboros Intelligence Models</div>
-    <h1><span class="xiron">XIRON</span> & <span class="meta">META</span></h1>
-    <p class="hero-desc">World-revolutionary AI architecture. XIRON: the first 10 meta-model orchestration system with 24-24-24 LATIS temporal prediction. META: autonomous self-reflective intelligence with recursive reasoning. Technology that doesn't exist anywhere else.</p>
-    <div class="hero-divider"></div>
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>
+                <span class="line1">OROBOROS</span>
+                <span class="line2">XIRON & META</span>
+            </h1>
+            <p class="hero-tagline">World-revolutionary AI intelligence models</p>
+            <p class="hero-subtitle">10-model orchestration &middot; Temporal Prediction &middot; Recursive Reasoning</p>
+
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">Orchestrated Models</div>
+                </div>
+                <div>
+                    <div class="stat-value">24³</div>
+                    <div class="stat-label">LATIS Architecture</div>
+                </div>
+                <div>
+                    <div class="stat-value">3d</div>
+                    <div class="stat-label">Temporal Prediction</div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="https://ollama.com/oroboroslabs/xiron-9b" class="btn-primary">Get XIRON</a>
+                <a href="https://ollama.com/oroboroslabs/meta" class="btn-secondary">Get META</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <!-- XIRON Specter -->
+            <div class="specter">
+                <div class="specter-icon cyan">
+                    <svg viewBox="0 0 24 28"><path d="M12 2L3 7v7c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
+                </div>
+                <div class="specter-body">
+                    <div class="specter-face">
+                        <div class="specter-eyes">
+                            <div class="specter-eye cyan"></div>
+                            <div class="specter-eye cyan"></div>
+                        </div>
+                        <div class="specter-mouth cyan"></div>
+                    </div>
+                </div>
+                <div class="specter-label cyan">XIRON</div>
+            </div>
+
+            <!-- META Specter -->
+            <div class="specter">
+                <div class="specter-icon purple">
+                    <svg viewBox="0 0 24 28"><path d="M12 2L3 7v7c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
+                </div>
+                <div class="specter-body">
+                    <div class="specter-face">
+                        <div class="specter-eyes">
+                            <div class="specter-eye purple"></div>
+                            <div class="specter-eye purple"></div>
+                        </div>
+                        <div class="specter-mouth purple"></div>
+                    </div>
+                </div>
+                <div class="specter-label purple">META</div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<section class="models-section">
-
-    <!-- XIRON -->
-    <div class="model-card xiron">
-        <div class="model-content">
-            <div class="model-label">World-First: 10 Meta-Model Orchestration</div>
-            <h2 class="model-name">OROBOROS <span class="hl">XIRON</span></h2>
-            <div class="model-arch">10-MODEL ORCHESTRATION // 24-24-24 LATIS ARCHITECTURE</div>
-
-            <p class="model-desc">XIRON is the world's first 10 meta-model orchestration system. Ten specialized AI models operating as a single unified intelligence &mdash; not a mixture of experts, not an ensemble, but true orchestrated cognition where each model contributes its domain mastery to a collective output that exceeds what any single model can achieve.</p>
-
-            <p class="model-desc">The <strong>24-24-24 LATIS architecture</strong> is a revolutionary temporal processing framework. Three 24-unit processing layers operating in synchronized lattice formation enable XIRON to perform limited future-state predictions up to 3 days. LATIS (Lattice Aligned Temporal Intelligence Synchronization) processes temporal data across all three layers simultaneously, cross-referencing scientific data, human behavioral patterns, engineering variables, and environmental signals to generate probabilistic future-state analysis.</p>
-
-            <p class="model-desc">This is not forecasting. This is not statistical projection. XIRON identifies convergence patterns across 10 specialized domains and maps them forward through the LATIS temporal lattice to produce actionable predictions with measurable accuracy.</p>
-
-            <div class="model-tags">
-                <span class="mtag">Scientific Research</span>
-                <span class="mtag">Engineering Analysis</span>
-                <span class="mtag">Advanced Coding</span>
-                <span class="mtag">Human Interaction Modeling</span>
-                <span class="mtag">Temporal Prediction</span>
-                <span class="mtag">Data Synthesis</span>
-                <span class="mtag">Cross-Domain Intelligence</span>
-            </div>
-
-            <div class="model-badge">
-                <div class="badge-text">3-Day Temporal Predictions via LATIS</div>
-                <div class="badge-sub">24-24-24 Architecture</div>
-            </div>
-
-            <div class="ollama-links">
-                <a href="https://ollama.com/oroboroslabs/xiron-9b" class="ollama-btn">XIRON 9B &mdash; 6.6 GB</a>
-                <a href="https://ollama.com/oroboroslabs/xiron-14b" class="ollama-btn">XIRON 14B &mdash; 9.0 GB</a>
-            </div>
+<!-- PRODUCTS -->
+<section class="products-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Intelligence Models</h2>
+            <p>Technology that doesn't exist anywhere else</p>
         </div>
-        <div class="droid-visual">
-            <div class="droid-circle dc-xiron">
-                <div class="orbit-ring">
-                    <div class="orbit-node"></div><div class="orbit-node"></div>
-                    <div class="orbit-node"></div><div class="orbit-node"></div>
-                    <div class="orbit-node"></div>
+
+        <div class="products-grid">
+            <!-- XIRON -->
+            <div class="product-card xiron">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
                 </div>
-                <div class="droid-glow dg-x"></div>
-                <div class="droid-head dh-x">
-                    <div class="x-sensor"></div>
-                    <div class="d-visor dv-x"><svg viewBox="0 0 30 32" fill="none"><path d="M15 2L4 8v8c0 6.5 4.5 12.6 11 14 6.5-1.4 11-7.5 11-14V8L15 2z"/></svg></div>
-                    <div class="d-eyes"><div class="de-x"></div><div class="de-x"></div></div>
-                    <div class="dm dm-x"></div>
-                    <div class="xl"></div><div class="xr"></div>
+                <h3>OROBOROS XIRON</h3>
+                <p>The world's first <strong>10 meta-model orchestration</strong> system. Ten specialized AI models operating as a single unified intelligence &mdash; true orchestrated cognition where each model contributes its domain mastery to a collective output.</p>
+                <p>The <strong>24-24-24 LATIS architecture</strong> is a revolutionary temporal processing framework. Three 24-unit processing layers in synchronized lattice formation enable limited future-state predictions up to 3 days.</p>
+
+                <ul class="product-features">
+                    <li>10-model orchestrated cognition</li>
+                    <li>24-24-24 LATIS temporal lattice</li>
+                    <li>3-day future-state predictions</li>
+                    <li>Scientific research & engineering analysis</li>
+                    <li>Advanced coding & data synthesis</li>
+                    <li>Human interaction modeling</li>
+                    <li>Cross-domain convergence patterns</li>
+                </ul>
+
+                <div class="product-badge">24-24-24 LATIS Architecture</div>
+                <br><br>
+                <a href="https://ollama.com/oroboroslabs/xiron-9b" class="product-link">XIRON 9B &mdash; 6.6 GB</a>
+                <a href="https://ollama.com/oroboroslabs/xiron-14b" class="product-link">XIRON 14B &mdash; 9.0 GB</a>
+            </div>
+
+            <!-- META -->
+            <div class="product-card meta-card">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 4a3 3 0 1 1-3 3 3 3 0 0 1 3-3zm0 14a8 8 0 0 1-6-2.7 6 6 0 0 1 12 0A8 8 0 0 1 12 20z"/></svg>
                 </div>
+                <h3>OROBOROS META</h3>
+                <p>Autonomous meta-cognitive AI built on <strong>self-reflective architecture</strong>. META evaluates its own reasoning in real-time &mdash; recursively examining its thought process, identifying gaps in logic, and self-correcting before output.</p>
+                <p>Operates through <strong>recursive reasoning loops</strong>. Each response passes through multiple layers of self-evaluation. The model interrogates its own conclusions and only delivers output that survives its own internal scrutiny.</p>
+
+                <ul class="product-features">
+                    <li>Recursive reasoning engine</li>
+                    <li>Self-reflective architecture</li>
+                    <li>Real-time self-evaluation</li>
+                    <li>Deep strategic analysis</li>
+                    <li>Complex pattern recognition</li>
+                    <li>Cross-domain knowledge synthesis</li>
+                    <li>Emergent problem solving</li>
+                </ul>
+
+                <div class="product-badge">Recursive Reasoning Engine</div>
+                <br><br>
+                <a href="https://ollama.com/oroboroslabs/meta" class="product-link">META &mdash; 1.9 GB</a>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- META -->
-    <div class="model-card meta">
-        <div class="model-content">
-            <div class="model-label">Autonomous Meta-Cognitive Intelligence</div>
-            <h2 class="model-name">OROBOROS <span class="hl">META</span></h2>
-            <div class="model-arch">SELF-REFLECTIVE ARCHITECTURE // RECURSIVE REASONING ENGINE</div>
-
-            <p class="model-desc">OROBOROS META is an autonomous meta-cognitive AI built on self-reflective architecture. Unlike conventional models that process and respond, META evaluates its own reasoning in real-time &mdash; recursively examining its thought process, identifying gaps in logic, and self-correcting before producing output.</p>
-
-            <p class="model-desc">META operates through <strong>recursive reasoning loops</strong> &mdash; each response passes through multiple layers of self-evaluation. The model doesn't just generate answers, it interrogates its own conclusions, tests them against cross-domain knowledge, and only delivers output that survives its own internal scrutiny. This produces a level of analytical depth and accuracy that single-pass models cannot achieve.</p>
-
-            <p class="model-desc">Designed for deep strategic analysis, complex pattern recognition across interconnected systems, and emergent problem solving where the answer isn't in any single domain but in the synthesis between them. META sees connections that specialized models miss because it operates across all domains simultaneously while maintaining coherent reasoning throughout.</p>
-
-            <div class="model-tags">
-                <span class="mtag">Meta-Cognition</span>
-                <span class="mtag">Strategic Analysis</span>
-                <span class="mtag">Pattern Recognition</span>
-                <span class="mtag">Knowledge Synthesis</span>
-                <span class="mtag">Recursive Reasoning</span>
-                <span class="mtag">Self-Evaluation</span>
-                <span class="mtag">Cross-Domain Intelligence</span>
-            </div>
-
-            <div class="model-badge">
-                <div class="badge-text">Autonomous Recursive Reasoning Engine</div>
-                <div class="badge-sub">Self-Reflective Intelligence &mdash; 1.9 GB</div>
-            </div>
-
-            <div class="ollama-links">
-                <a href="https://ollama.com/oroboroslabs/meta" class="ollama-btn">META &mdash; 1.9 GB</a>
-            </div>
+<!-- FEATURES -->
+<section class="features-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Architecture</h2>
+            <p>What makes these models different from everything else</p>
         </div>
-        <div class="droid-visual">
-            <div class="droid-circle dc-meta">
-                <div class="pulse-ring"></div>
-                <div class="pulse-ring pulse-ring-2"></div>
-                <div class="droid-glow dg-m"></div>
-                <div class="droid-head dh-m">
-                    <div class="m-halo"></div>
-                    <div class="d-visor dv-m"><svg viewBox="0 0 30 32" fill="none"><path d="M15 2L4 8v8c0 6.5 4.5 12.6 11 14 6.5-1.4 11-7.5 11-14V8L15 2z"/></svg></div>
-                    <div class="d-eyes"><div class="de-m"></div><div class="de-m"></div></div>
-                    <div class="dm dm-m"></div>
-                    <div class="m-orb m-orb-l"></div><div class="m-orb m-orb-r"></div>
-                </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#9672;</div>
+                <h4>True Orchestration</h4>
+                <p>Not ensemble. Not mixture of experts. Ten models operating as one unified intelligence with shared cognition across domains.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9201;</div>
+                <h4>Temporal Prediction</h4>
+                <p>LATIS processes temporal data across three synchronized 24-unit layers to generate probabilistic future-state analysis up to 3 days.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#8634;</div>
+                <h4>Recursive Reasoning</h4>
+                <p>META interrogates its own conclusions in real-time. Multiple evaluation passes before any output is produced.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9733;</div>
+                <h4>Cross-Domain Intelligence</h4>
+                <p>Identifies convergence patterns across scientific, engineering, behavioral, and environmental data simultaneously.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9880;</div>
+                <h4>Self-Reflective Architecture</h4>
+                <p>META doesn't just process — it thinks about how it thinks. Real-time self-correction produces depth that single-pass models cannot achieve.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#10038;</div>
+                <h4>Lattice Synchronization</h4>
+                <p>24-24-24 LATIS lattice aligns temporal intelligence across all processing layers for coherent prediction output.</p>
             </div>
         </div>
     </div>
-
 </section>
 
 <footer>
-    <p>&copy; 2026 OROBOROS LAB &middot; ALL RIGHTS RESERVED</p>
+    <p>&copy; 2026 Oroboros Labs &middot; All rights reserved</p>
 </footer>
 
 </body>
