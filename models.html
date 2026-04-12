@@ -6,346 +6,299 @@
     <title>OROBOROS Models — XIRON & META · Oroboros Lab</title>
     <meta name="description" content="OROBOROS XIRON: World's first 10 meta-model orchestration with 24-24-24 LATIS temporal prediction architecture. OROBOROS META: Autonomous recursive reasoning engine.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #c9a54d;
-            --gold-bright: #e8c96a;
-            --gold-dim: #8a6e2f;
-            --gold-faint: #3a2e15;
-            --amber: #d4882a;
-            --black-true: #030202;
-            --black-mid: #0b0906;
-            --black-warm: #0f0c07;
-            --white: #f4efe4;
-            --cream: #e8e0cc;
-            --gray: #7a7060;
-            --gray-light: #b0a890;
-            --gray-dim: #3a3528;
-            --xiron-color: #4da5c9;
-            --xiron-dim: #2a6a85;
-            --meta-color: #9a7acc;
-            --meta-dim: #5e4a80;
+            --bg: #050508;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --text: #e0e0e0;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --cyan: #00f0ff;
+            --cyan-dim: #0090a0;
+            --purple: #8b5cf6;
+            --purple-dim: #5e3db5;
+            --xiron-color: #00f0ff;
+            --meta-color: #8b5cf6;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Cormorant Garamond', serif;
-            background: var(--black-true);
-            color: var(--white);
-            line-height: 1.9;
-            font-size: 18px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
             overflow-x: hidden;
-        }
-
-        #starfield {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; pointer-events: none; opacity: 0.55;
         }
 
         /* ─── NAV ─── */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(3,2,2,0.96);
-            border-bottom: 1px solid #1c160a;
+            background: rgba(5,5,8,0.9);
+            border-bottom: 1px solid var(--border);
             backdrop-filter: blur(16px);
             padding: 16px 48px;
             display: flex; justify-content: space-between; align-items: center;
         }
         .nav-brand {
-            font-family: 'Cinzel', serif; font-size: 0.7rem;
-            color: var(--gray); letter-spacing: 0.35em; text-decoration: none;
+            font-size: 0.75rem; font-weight: 700;
+            color: var(--text-muted); letter-spacing: 0.3em; text-decoration: none;
+            text-transform: uppercase;
         }
-        nav ul { list-style: none; display: flex; gap: 40px; }
+        .nav-brand:hover { color: var(--cyan); }
+        nav ul { list-style: none; display: flex; gap: 36px; }
         nav a {
-            font-family: 'Cinzel', serif; color: var(--gray);
-            text-decoration: none; font-size: 0.72rem; letter-spacing: 0.2em;
-            transition: color 0.3s;
+            color: var(--text-muted); text-decoration: none;
+            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+            text-transform: uppercase; transition: color 0.3s;
         }
-        nav a:hover { color: var(--gold); }
-        nav a.active { color: var(--gold); }
+        nav a:hover { color: var(--cyan); }
+        nav a.active { color: var(--cyan); }
 
         /* ─── HERO ─── */
         .hero {
-            position: relative; z-index: 1;
             min-height: 100vh;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             text-align: center;
             padding: 120px 40px 60px;
+            position: relative; overflow: hidden;
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(0,240,255,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(139,92,246,0.05) 0%, transparent 50%),
+                linear-gradient(180deg, #050508 0%, #0a0a12 100%);
         }
 
-        .hero-glow {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -55%);
-            width: 900px; height: 700px;
-            background: radial-gradient(ellipse at center,
-                rgba(201,165,77,0.08) 0%,
-                rgba(201,165,77,0.03) 30%,
-                transparent 70%);
+        .hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.008) 2px, rgba(255,255,255,0.008) 4px);
             pointer-events: none;
         }
 
-        .hero h1 {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            color: var(--white);
-            letter-spacing: 0.08em;
-            line-height: 1.0;
-            margin-bottom: 16px;
+        .hero-label {
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.4em; text-transform: uppercase;
+            color: var(--cyan-dim); margin-bottom: 20px;
             position: relative; z-index: 2;
-            text-shadow: 0 0 80px rgba(201,165,77,0.12);
         }
-        .hero h1 .xiron { color: var(--xiron-color); text-shadow: 0 0 40px rgba(77,165,201,0.25); }
-        .hero h1 .meta { color: var(--meta-color); text-shadow: 0 0 40px rgba(154,122,204,0.25); }
 
-        .hero .tagline {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(0.65rem, 1.5vw, 0.85rem);
-            color: var(--gold-dim);
-            letter-spacing: 0.45em;
-            margin-bottom: 20px;
+        .hero h1 {
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 900; letter-spacing: -2px;
+            line-height: 1.05; margin-bottom: 20px;
             position: relative; z-index: 2;
+        }
+        .hero h1 .xiron {
+            background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero h1 .meta {
+            background: linear-gradient(135deg, #fff 0%, var(--purple) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
         .hero-desc {
-            font-size: 1.1rem;
-            color: var(--gray-light);
-            max-width: 650px;
-            line-height: 1.9;
+            font-size: 1.1rem; font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 680px; line-height: 1.8;
             position: relative; z-index: 2;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .hero-divider {
-            width: 80px; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+            width: 60px; height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
             position: relative; z-index: 2;
+            border-radius: 1px;
         }
 
         /* ─── MODEL CARDS ─── */
         .models-section {
-            position: relative; z-index: 1;
-            max-width: 960px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 40px 80px;
         }
 
         .model-card {
-            border: 1px solid var(--gray-dim);
-            border-radius: 6px;
-            padding: 48px 44px;
-            background: rgba(3,2,2,0.65);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 48px;
+            background: var(--bg-card);
             backdrop-filter: blur(8px);
             margin-bottom: 40px;
             display: flex;
-            gap: 44px;
+            gap: 48px;
             align-items: center;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
-        .model-card:hover { transform: translateY(-4px); }
-        .model-card.xiron:hover { border-color: var(--xiron-color); box-shadow: 0 0 30px rgba(77,165,201,0.12); }
-        .model-card.meta:hover { border-color: var(--meta-color); box-shadow: 0 0 30px rgba(154,122,204,0.12); }
+        .model-card:hover { transform: translateY(-3px); }
+        .model-card.xiron:hover { border-color: rgba(0,240,255,0.2); box-shadow: 0 0 40px rgba(0,240,255,0.06); }
+        .model-card.meta:hover { border-color: rgba(139,92,246,0.2); box-shadow: 0 0 40px rgba(139,92,246,0.06); }
 
         .model-content { flex: 1; }
 
         .model-label {
-            font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
+            font-size: 0.65rem; font-weight: 600;
+            letter-spacing: 0.3em; text-transform: uppercase;
             margin-bottom: 8px;
         }
-        .xiron .model-label { color: var(--xiron-dim); }
-        .meta .model-label { color: var(--meta-dim); }
+        .xiron .model-label { color: var(--cyan-dim); }
+        .meta .model-label { color: var(--purple-dim); }
 
         .model-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            letter-spacing: 0.15em;
-            margin-bottom: 4px;
+            font-size: 2rem; font-weight: 800;
+            letter-spacing: -1px; margin-bottom: 4px;
         }
-        .xiron .model-name .hl { color: var(--xiron-color); }
-        .meta .model-name .hl { color: var(--meta-color); }
+        .xiron .model-name .hl {
+            background: linear-gradient(135deg, #fff, var(--cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .meta .model-name .hl {
+            background: linear-gradient(135deg, #fff, var(--purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
 
         .model-arch {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            letter-spacing: 0.15em;
+            font-size: 0.7rem; letter-spacing: 0.1em;
             margin-bottom: 20px;
         }
-        .xiron .model-arch { color: var(--xiron-dim); }
-        .meta .model-arch { color: var(--meta-dim); }
+        .xiron .model-arch { color: var(--cyan-dim); }
+        .meta .model-arch { color: var(--purple-dim); }
 
         .model-desc {
-            font-size: 1rem;
-            color: var(--cream);
-            line-height: 1.9;
-            margin-bottom: 16px;
+            font-size: 0.95rem; font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.8; margin-bottom: 16px;
         }
-        .model-desc strong {
-            font-weight: 600;
-        }
-        .xiron .model-desc strong { color: var(--xiron-color); }
-        .meta .model-desc strong { color: var(--meta-color); }
+        .xiron .model-desc strong { color: var(--cyan); font-weight: 600; }
+        .meta .model-desc strong { color: var(--purple); font-weight: 600; }
 
         .model-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
+            display: flex; flex-wrap: wrap;
+            gap: 6px; margin-bottom: 20px;
         }
-
         .mtag {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.55rem;
-            letter-spacing: 0.1em;
-            color: var(--gray-light);
-            border-radius: 3px;
-            padding: 4px 10px;
+            font-size: 0.6rem; letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            border-radius: 4px; padding: 4px 10px;
         }
-        .xiron .mtag { border: 1px solid rgba(77,165,201,0.15); background: rgba(77,165,201,0.04); }
-        .meta .mtag { border: 1px solid rgba(154,122,204,0.15); background: rgba(154,122,204,0.04); }
+        .xiron .mtag { border: 1px solid rgba(0,240,255,0.1); background: rgba(0,240,255,0.03); }
+        .meta .mtag { border: 1px solid rgba(139,92,246,0.1); background: rgba(139,92,246,0.03); }
 
         .model-badge {
-            border-radius: 4px;
-            padding: 10px 16px;
-            display: inline-block;
-            margin-bottom: 16px;
+            border-radius: 6px; padding: 12px 18px;
+            display: inline-block; margin-bottom: 18px;
         }
-        .xiron .model-badge { border: 1px solid rgba(77,165,201,0.2); background: rgba(77,165,201,0.05); }
-        .meta .model-badge { border: 1px solid rgba(154,122,204,0.2); background: rgba(154,122,204,0.05); }
+        .xiron .model-badge { border: 1px solid rgba(0,240,255,0.15); background: rgba(0,240,255,0.04); }
+        .meta .model-badge { border: 1px solid rgba(139,92,246,0.15); background: rgba(139,92,246,0.04); }
 
-        .badge-text {
-            font-family: 'Cinzel', serif;
-            font-size: 0.72rem;
-            letter-spacing: 0.15em;
-            color: var(--white);
-        }
+        .badge-text { font-size: 0.85rem; font-weight: 600; color: var(--text); }
         .badge-sub {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
-            letter-spacing: 0.15em;
-            margin-top: 2px;
+            font-size: 0.6rem; letter-spacing: 0.1em; margin-top: 2px;
         }
-        .xiron .badge-sub { color: var(--xiron-dim); }
-        .meta .badge-sub { color: var(--meta-dim); }
+        .xiron .badge-sub { color: var(--cyan-dim); }
+        .meta .badge-sub { color: var(--purple-dim); }
 
-        .ollama-links {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        .ollama-links { display: flex; gap: 12px; flex-wrap: wrap; }
         .ollama-btn {
-            font-family: 'Cinzel', serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.1em; padding: 10px 20px;
+            border-radius: 6px; text-decoration: none;
             transition: all 0.3s;
         }
         .xiron .ollama-btn {
-            color: var(--xiron-color);
-            border: 1px solid rgba(77,165,201,0.2);
-            background: rgba(77,165,201,0.05);
+            color: var(--cyan); border: 1px solid rgba(0,240,255,0.2);
+            background: rgba(0,240,255,0.04);
         }
-        .xiron .ollama-btn:hover {
-            background: rgba(77,165,201,0.12);
-            box-shadow: 0 0 16px rgba(77,165,201,0.1);
-        }
+        .xiron .ollama-btn:hover { background: rgba(0,240,255,0.1); box-shadow: 0 0 16px rgba(0,240,255,0.1); }
         .meta .ollama-btn {
-            color: var(--meta-color);
-            border: 1px solid rgba(154,122,204,0.2);
-            background: rgba(154,122,204,0.05);
+            color: var(--purple); border: 1px solid rgba(139,92,246,0.2);
+            background: rgba(139,92,246,0.04);
         }
-        .meta .ollama-btn:hover {
-            background: rgba(154,122,204,0.12);
-            box-shadow: 0 0 16px rgba(154,122,204,0.1);
-        }
+        .meta .ollama-btn:hover { background: rgba(139,92,246,0.1); box-shadow: 0 0 16px rgba(139,92,246,0.1); }
 
         /* ─── DROID VISUAL ─── */
         .droid-visual { flex-shrink: 0; }
 
         .droid-circle {
-            width: 180px; height: 180px; border-radius: 50%;
+            width: 200px; height: 200px; border-radius: 50%;
             position: relative;
             display: flex; justify-content: center; align-items: center;
         }
-        .droid-circle.dc-xiron {
-            background: radial-gradient(circle, #080a10 0%, #050608 50%, #070810 100%);
-            border: 1px solid rgba(77,165,201,0.1);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 0 20px rgba(77,165,201,0.04);
+        .dc-xiron {
+            background: radial-gradient(circle, #080a10, #050608);
+            border: 1px solid rgba(0,240,255,0.08);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 0 20px rgba(0,240,255,0.03);
         }
-        .droid-circle.dc-meta {
-            background: radial-gradient(circle, #0c0a10 0%, #080610 50%, #0a0812 100%);
-            border: 1px solid rgba(154,122,204,0.1);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 0 20px rgba(154,122,204,0.04);
+        .dc-meta {
+            background: radial-gradient(circle, #0c0a10, #080610);
+            border: 1px solid rgba(139,92,246,0.08);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 0 20px rgba(139,92,246,0.03);
         }
 
         .droid-glow {
             position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
             width: 80px; height: 80px; filter: blur(10px); pointer-events: none;
         }
-        .dg-xiron { background: radial-gradient(circle, rgba(77,165,201,0.1) 0%, transparent 70%); }
-        .dg-meta { background: radial-gradient(circle, rgba(154,122,204,0.1) 0%, transparent 70%); }
+        .dg-x { background: radial-gradient(circle, rgba(0,240,255,0.1), transparent 70%); }
+        .dg-m { background: radial-gradient(circle, rgba(139,92,246,0.1), transparent 70%); }
 
         .droid-head {
-            width: 74px; height: 90px;
-            border-radius: 16px 16px 24px 24px;
+            width: 80px; height: 96px;
+            border-radius: 18px 18px 26px 26px;
             position: relative; margin-top: 10px;
             box-shadow: 0 0 28px rgba(0,0,0,0.5);
         }
-        .dh-xiron { background: radial-gradient(ellipse at 50% 40%, #0a0c14, #040508); }
-        .dh-meta { background: radial-gradient(ellipse at 50% 40%, #0e0c16, #06040a); }
+        .dh-x { background: radial-gradient(ellipse at 50% 40%, #0a0c14, #040508); }
+        .dh-m { background: radial-gradient(ellipse at 50% 40%, #0e0c16, #06040a); }
 
-        .droid-eyes { position: absolute; top: 42%; left: 50%; transform: translate(-50%,-50%); display: flex; gap: 10px; }
-
-        .de-xiron {
+        .d-eyes { position: absolute; top: 42%; left: 50%; transform: translate(-50%,-50%); display: flex; gap: 10px; }
+        .de-x {
             width: 14px; height: 3px; border-radius: 1px;
-            background: rgba(77,165,201,0.8);
-            box-shadow: 0 0 6px rgba(77,165,201,0.6), 0 0 16px rgba(77,165,201,0.3), 0 0 30px rgba(77,165,201,0.15);
+            background: rgba(0,240,255,0.8);
+            box-shadow: 0 0 6px rgba(0,240,255,0.6), 0 0 16px rgba(0,240,255,0.3), 0 0 30px rgba(0,240,255,0.15);
         }
-        .de-meta {
+        .de-m {
             width: 14px; height: 3px; border-radius: 1px;
-            background: rgba(154,122,204,0.8);
-            box-shadow: 0 0 6px rgba(154,122,204,0.6), 0 0 16px rgba(154,122,204,0.3), 0 0 30px rgba(154,122,204,0.15);
+            background: rgba(139,92,246,0.8);
+            box-shadow: 0 0 6px rgba(139,92,246,0.6), 0 0 16px rgba(139,92,246,0.3), 0 0 30px rgba(139,92,246,0.15);
         }
 
         .dm { position: absolute; top: 63%; left: 50%; transform: translateX(-50%); }
-        .dm-xiron { width: 16px; height: 2px; background: rgba(77,165,201,0.35); box-shadow: 0 0 4px rgba(77,165,201,0.25); border-radius: 1px; }
-        .dm-meta { width: 10px; height: 5px; border-bottom: 1.5px solid rgba(154,122,204,0.35); border-radius: 0 0 50% 50%; background: transparent; box-shadow: 0 1px 6px rgba(154,122,204,0.15); }
+        .dm-x { width: 16px; height: 2px; background: rgba(0,240,255,0.3); box-shadow: 0 0 4px rgba(0,240,255,0.2); border-radius: 1px; }
+        .dm-m { width: 10px; height: 5px; border-bottom: 1.5px solid rgba(139,92,246,0.3); border-radius: 0 0 50% 50%; background: transparent; }
 
-        .droid-visor { position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 24px; height: 26px; z-index: 3; }
-        .droid-visor svg { width: 24px; height: 26px; }
-        .dv-xiron svg path { fill: rgba(77,165,201,0.08); stroke: rgba(77,165,201,0.4); stroke-width: 1; filter: drop-shadow(0 0 4px rgba(77,165,201,0.3)); }
-        .dv-meta svg path { fill: rgba(154,122,204,0.08); stroke: rgba(154,122,204,0.4); stroke-width: 1; filter: drop-shadow(0 0 4px rgba(154,122,204,0.3)); }
+        .d-visor { position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 24px; height: 26px; z-index: 3; }
+        .d-visor svg { width: 24px; height: 26px; }
+        .dv-x svg path { fill: rgba(0,240,255,0.06); stroke: rgba(0,240,255,0.35); stroke-width: 1; filter: drop-shadow(0 0 4px rgba(0,240,255,0.3)); }
+        .dv-m svg path { fill: rgba(139,92,246,0.06); stroke: rgba(139,92,246,0.35); stroke-width: 1; filter: drop-shadow(0 0 4px rgba(139,92,246,0.3)); }
 
-        /* Xiron details */
-        .x-sensor { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 12px; background: linear-gradient(to top, rgba(77,165,201,0.1), rgba(77,165,201,0.4)); border-radius: 1px; }
-        .x-sensor::after { content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: rgba(77,165,201,0.5); box-shadow: 0 0 4px rgba(77,165,201,0.4), 0 0 10px rgba(77,165,201,0.2); }
+        .x-sensor { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 12px; background: linear-gradient(to top, rgba(0,240,255,0.1), rgba(0,240,255,0.4)); border-radius: 1px; }
+        .x-sensor::after { content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: rgba(0,240,255,0.5); box-shadow: 0 0 4px rgba(0,240,255,0.4); }
         .xl, .xr { position: absolute; top: 40%; width: 14px; height: 1.5px; border-radius: 1px; }
-        .xl { left: -20px; background: linear-gradient(to left, rgba(77,165,201,0.35), transparent); }
-        .xr { right: -20px; background: linear-gradient(to right, rgba(77,165,201,0.35), transparent); }
+        .xl { left: -20px; background: linear-gradient(to left, rgba(0,240,255,0.3), transparent); }
+        .xr { right: -20px; background: linear-gradient(to right, rgba(0,240,255,0.3), transparent); }
 
-        /* Meta details */
-        .m-halo { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 36px; height: 18px; border: 1px solid rgba(154,122,204,0.25); border-bottom: none; border-radius: 18px 18px 0 0; box-shadow: 0 0 6px rgba(154,122,204,0.1); }
-        .m-orb { position: absolute; top: 38%; width: 7px; height: 7px; border-radius: 50%; background: rgba(154,122,204,0.12); border: 1px solid rgba(154,122,204,0.2); box-shadow: 0 0 4px rgba(154,122,204,0.15); }
+        .m-halo { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 36px; height: 18px; border: 1px solid rgba(139,92,246,0.2); border-bottom: none; border-radius: 18px 18px 0 0; }
+        .m-orb { position: absolute; top: 38%; width: 7px; height: 7px; border-radius: 50%; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.18); }
         .m-orb-l { left: -14px; }
         .m-orb-r { right: -14px; }
 
-        /* Orbit ring for XIRON */
         .orbit-ring {
-            position: absolute;
-            width: 210px; height: 210px; border-radius: 50%;
-            border: 1px solid rgba(77,165,201,0.05);
+            position: absolute; width: 230px; height: 230px; border-radius: 50%;
+            border: 1px solid rgba(0,240,255,0.04);
             top: 50%; left: 50%; transform: translate(-50%,-50%);
             animation: orbit 20s linear infinite;
         }
-        .orbit-node { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: rgba(77,165,201,0.4); box-shadow: 0 0 4px rgba(77,165,201,0.3); }
+        .orbit-node { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: rgba(0,240,255,0.4); box-shadow: 0 0 4px rgba(0,240,255,0.3); }
         .orbit-node:nth-child(1) { top: -2px; left: 50%; }
         .orbit-node:nth-child(2) { bottom: -2px; left: 50%; }
         .orbit-node:nth-child(3) { top: 50%; right: -2px; }
@@ -353,11 +306,9 @@
         .orbit-node:nth-child(5) { top: 14%; right: 14%; }
         @keyframes orbit { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
 
-        /* Pulse ring for META */
         .pulse-ring {
-            position: absolute;
-            width: 190px; height: 190px; border-radius: 50%;
-            border: 1px solid rgba(154,122,204,0.06);
+            position: absolute; width: 210px; height: 210px; border-radius: 50%;
+            border: 1px solid rgba(139,92,246,0.05);
             top: 50%; left: 50%; transform: translate(-50%,-50%);
             animation: pulse 3s ease-in-out infinite;
         }
@@ -369,22 +320,18 @@
 
         /* ─── FOOTER ─── */
         footer {
-            position: relative; z-index: 1;
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid var(--gray-dim);
+            text-align: center; padding: 40px;
+            border-top: 1px solid var(--border);
         }
         footer p {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.55rem;
-            color: var(--gray);
-            letter-spacing: 0.15em;
+            font-size: 0.65rem; color: var(--text-muted);
+            letter-spacing: 0.1em;
         }
 
-        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
             .model-card { flex-direction: column; padding: 32px 24px; }
-            .hero h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.4rem; }
             nav { padding: 12px 20px; }
             nav ul { gap: 20px; }
         }
@@ -392,21 +339,17 @@
 </head>
 <body>
 
-<canvas id="starfield"></canvas>
-
 <nav>
-    <a class="nav-brand" href="index.html">OROBOROS LAB</a>
+    <a class="nav-brand" href="https://oroboroslab.github.io/">OROBOROS LABS</a>
     <ul>
-        <li><a href="index.html">ARCHIVE</a></li>
         <li><a href="agi-demo.html">AGI</a></li>
         <li><a href="models.html" class="active">MODELS</a></li>
     </ul>
 </nav>
 
 <section class="hero">
-    <div class="hero-glow"></div>
-    <h1><span class="xiron">XIRON</span> &amp; <span class="meta">META</span></h1>
-    <div class="tagline">INTRODUCING OROBOROS INTELLIGENCE MODELS</div>
+    <div class="hero-label">Introducing Oroboros Intelligence Models</div>
+    <h1><span class="xiron">XIRON</span> & <span class="meta">META</span></h1>
     <p class="hero-desc">World-revolutionary AI architecture. XIRON: the first 10 meta-model orchestration system with 24-24-24 LATIS temporal prediction. META: autonomous self-reflective intelligence with recursive reasoning. Technology that doesn't exist anywhere else.</p>
     <div class="hero-divider"></div>
 </section>
@@ -416,7 +359,7 @@
     <!-- XIRON -->
     <div class="model-card xiron">
         <div class="model-content">
-            <div class="model-label">WORLD-FIRST: 10 META-MODEL ORCHESTRATION</div>
+            <div class="model-label">World-First: 10 Meta-Model Orchestration</div>
             <h2 class="model-name">OROBOROS <span class="hl">XIRON</span></h2>
             <div class="model-arch">10-MODEL ORCHESTRATION // 24-24-24 LATIS ARCHITECTURE</div>
 
@@ -427,18 +370,18 @@
             <p class="model-desc">This is not forecasting. This is not statistical projection. XIRON identifies convergence patterns across 10 specialized domains and maps them forward through the LATIS temporal lattice to produce actionable predictions with measurable accuracy.</p>
 
             <div class="model-tags">
-                <span class="mtag">SCIENTIFIC RESEARCH</span>
-                <span class="mtag">ENGINEERING ANALYSIS</span>
-                <span class="mtag">ADVANCED CODING</span>
-                <span class="mtag">HUMAN INTERACTION MODELING</span>
-                <span class="mtag">TEMPORAL PREDICTION</span>
-                <span class="mtag">DATA SYNTHESIS</span>
-                <span class="mtag">CROSS-DOMAIN INTELLIGENCE</span>
+                <span class="mtag">Scientific Research</span>
+                <span class="mtag">Engineering Analysis</span>
+                <span class="mtag">Advanced Coding</span>
+                <span class="mtag">Human Interaction Modeling</span>
+                <span class="mtag">Temporal Prediction</span>
+                <span class="mtag">Data Synthesis</span>
+                <span class="mtag">Cross-Domain Intelligence</span>
             </div>
 
             <div class="model-badge">
                 <div class="badge-text">3-Day Temporal Predictions via LATIS</div>
-                <div class="badge-sub">24-24-24 ARCHITECTURE</div>
+                <div class="badge-sub">24-24-24 Architecture</div>
             </div>
 
             <div class="ollama-links">
@@ -453,12 +396,12 @@
                     <div class="orbit-node"></div><div class="orbit-node"></div>
                     <div class="orbit-node"></div>
                 </div>
-                <div class="droid-glow dg-xiron"></div>
-                <div class="droid-head dh-xiron">
+                <div class="droid-glow dg-x"></div>
+                <div class="droid-head dh-x">
                     <div class="x-sensor"></div>
-                    <div class="droid-visor dv-xiron"><svg viewBox="0 0 30 32" fill="none"><path d="M15 2L4 8v8c0 6.5 4.5 12.6 11 14 6.5-1.4 11-7.5 11-14V8L15 2z"/></svg></div>
-                    <div class="droid-eyes"><div class="de-xiron"></div><div class="de-xiron"></div></div>
-                    <div class="dm dm-xiron"></div>
+                    <div class="d-visor dv-x"><svg viewBox="0 0 30 32" fill="none"><path d="M15 2L4 8v8c0 6.5 4.5 12.6 11 14 6.5-1.4 11-7.5 11-14V8L15 2z"/></svg></div>
+                    <div class="d-eyes"><div class="de-x"></div><div class="de-x"></div></div>
+                    <div class="dm dm-x"></div>
                     <div class="xl"></div><div class="xr"></div>
                 </div>
             </div>
@@ -468,7 +411,7 @@
     <!-- META -->
     <div class="model-card meta">
         <div class="model-content">
-            <div class="model-label">AUTONOMOUS META-COGNITIVE INTELLIGENCE</div>
+            <div class="model-label">Autonomous Meta-Cognitive Intelligence</div>
             <h2 class="model-name">OROBOROS <span class="hl">META</span></h2>
             <div class="model-arch">SELF-REFLECTIVE ARCHITECTURE // RECURSIVE REASONING ENGINE</div>
 
@@ -479,18 +422,18 @@
             <p class="model-desc">Designed for deep strategic analysis, complex pattern recognition across interconnected systems, and emergent problem solving where the answer isn't in any single domain but in the synthesis between them. META sees connections that specialized models miss because it operates across all domains simultaneously while maintaining coherent reasoning throughout.</p>
 
             <div class="model-tags">
-                <span class="mtag">META-COGNITION</span>
-                <span class="mtag">STRATEGIC ANALYSIS</span>
-                <span class="mtag">PATTERN RECOGNITION</span>
-                <span class="mtag">KNOWLEDGE SYNTHESIS</span>
-                <span class="mtag">RECURSIVE REASONING</span>
-                <span class="mtag">SELF-EVALUATION</span>
-                <span class="mtag">CROSS-DOMAIN INTELLIGENCE</span>
+                <span class="mtag">Meta-Cognition</span>
+                <span class="mtag">Strategic Analysis</span>
+                <span class="mtag">Pattern Recognition</span>
+                <span class="mtag">Knowledge Synthesis</span>
+                <span class="mtag">Recursive Reasoning</span>
+                <span class="mtag">Self-Evaluation</span>
+                <span class="mtag">Cross-Domain Intelligence</span>
             </div>
 
             <div class="model-badge">
                 <div class="badge-text">Autonomous Recursive Reasoning Engine</div>
-                <div class="badge-sub">SELF-REFLECTIVE INTELLIGENCE &mdash; 1.9 GB</div>
+                <div class="badge-sub">Self-Reflective Intelligence &mdash; 1.9 GB</div>
             </div>
 
             <div class="ollama-links">
@@ -501,12 +444,12 @@
             <div class="droid-circle dc-meta">
                 <div class="pulse-ring"></div>
                 <div class="pulse-ring pulse-ring-2"></div>
-                <div class="droid-glow dg-meta"></div>
-                <div class="droid-head dh-meta">
+                <div class="droid-glow dg-m"></div>
+                <div class="droid-head dh-m">
                     <div class="m-halo"></div>
-                    <div class="droid-visor dv-meta"><svg viewBox="0 0 30 32" fill="none"><path d="M15 2L4 8v8c0 6.5 4.5 12.6 11 14 6.5-1.4 11-7.5 11-14V8L15 2z"/></svg></div>
-                    <div class="droid-eyes"><div class="de-meta"></div><div class="de-meta"></div></div>
-                    <div class="dm dm-meta"></div>
+                    <div class="d-visor dv-m"><svg viewBox="0 0 30 32" fill="none"><path d="M15 2L4 8v8c0 6.5 4.5 12.6 11 14 6.5-1.4 11-7.5 11-14V8L15 2z"/></svg></div>
+                    <div class="d-eyes"><div class="de-m"></div><div class="de-m"></div></div>
+                    <div class="dm dm-m"></div>
                     <div class="m-orb m-orb-l"></div><div class="m-orb m-orb-r"></div>
                 </div>
             </div>
@@ -518,47 +461,6 @@
 <footer>
     <p>&copy; 2026 OROBOROS LAB &middot; ALL RIGHTS RESERVED</p>
 </footer>
-
-<script>
-    // Starfield - same as other pages
-    const canvas = document.getElementById('starfield');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-
-    function initStars() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        stars = [];
-        const count = Math.floor((canvas.width * canvas.height) / 8000);
-        for (let i = 0; i < count; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                r: Math.random() * 1.2,
-                a: Math.random() * 0.5 + 0.1,
-                s: Math.random() * 0.002 + 0.001,
-                d: Math.random() > 0.5 ? 1 : -1
-            });
-        }
-    }
-
-    function drawStars() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        stars.forEach(s => {
-            s.a += s.s * s.d;
-            if (s.a >= 0.6 || s.a <= 0.05) s.d *= -1;
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(201,165,77,${s.a})`;
-            ctx.fill();
-        });
-        requestAnimationFrame(drawStars);
-    }
-
-    initStars();
-    drawStars();
-    window.addEventListener('resize', initStars);
-</script>
 
 </body>
 </html>

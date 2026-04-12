@@ -7,33 +7,33 @@
     <meta name="description" content="Oroboros-AI: A living AGI system. Three interfaces: AGI-Model-1 (Social Engineering), AGI-Model-2 (Security Systems), OMTP Engine (Math Translation). 12 strata. 24 Azimuth Laws. 213 GB knowledge base. Substrate-connected intelligence.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #c9a54d;
-            --gold-bright: #e8c96a;
-            --gold-dim: #8a6e2f;
-            --gold-faint: #3a2e15;
-            --amber: #d4882a;
-            --black: #040302;
-            --black-true: #030202;
-            --black-mid: #0b0906;
-            --black-warm: #0f0c07;
-            --white: #f4efe4;
-            --cream: #e8e0cc;
-            --gray: #7a7060;
-            --gray-light: #b0a890;
-            --gray-dim: #3a3528;
+            --gold: #00f0ff;
+            --gold-bright: #40f8ff;
+            --gold-dim: #0090a0;
+            --gold-faint: #0a1a20;
+            --amber: #00b8d4;
+            --black: #050508;
+            --black-true: #050508;
+            --black-mid: #0a0a12;
+            --black-warm: #0f0f1a;
+            --white: #e0e0e0;
+            --cream: #c0c0d0;
+            --gray: #606070;
+            --gray-light: #a0a0b0;
+            --gray-dim: rgba(255,255,255,0.08);
             --ors-color: #4da5c9;
             --noir-color: #c94d4d;
-            --core-color: #c9a54d;
+            --core-color: #00f0ff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Inter', sans-serif;
             background: var(--black-true);
             color: var(--white);
             line-height: 1.9;
@@ -50,18 +50,18 @@
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(3,2,2,0.96);
-            border-bottom: 1px solid #1c160a;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             backdrop-filter: blur(16px);
             padding: 16px 48px;
             display: flex; justify-content: space-between; align-items: center;
         }
         .nav-brand {
-            font-family: 'Cinzel', serif; font-size: 0.7rem;
+            font-family: 'Inter', sans-serif; font-size: 0.7rem;
             color: var(--gray); letter-spacing: 0.35em; text-decoration: none;
         }
         nav ul { list-style: none; display: flex; gap: 40px; }
         nav a {
-            font-family: 'Cinzel', serif; color: var(--gray);
+            font-family: 'Inter', sans-serif; color: var(--gray);
             text-decoration: none; font-size: 0.72rem; letter-spacing: 0.2em;
             transition: color 0.3s;
         }
@@ -83,26 +83,26 @@
             transform: translate(-50%, -55%);
             width: 900px; height: 700px;
             background: radial-gradient(ellipse at center,
-                rgba(201,165,77,0.08) 0%,
-                rgba(201,165,77,0.03) 30%,
+                rgba(0,240,255,0.08) 0%,
+                rgba(0,240,255,0.03) 30%,
                 transparent 70%);
             pointer-events: none;
         }
 
         .hero h1 {
-            font-family: 'Cinzel Decorative', serif;
+            font-family: 'Inter', sans-serif; font-weight: 900;
             font-size: clamp(2.5rem, 8vw, 6rem);
             color: var(--white);
             letter-spacing: 0.08em;
             line-height: 1.0;
             margin-bottom: 16px;
             position: relative; z-index: 2;
-            text-shadow: 0 0 80px rgba(201,165,77,0.12);
+            text-shadow: 0 0 80px rgba(0,240,255,0.12);
         }
-        .hero h1 span { color: var(--gold); text-shadow: 0 0 40px rgba(201,165,77,0.35); }
+        .hero h1 span { color: var(--gold); text-shadow: 0 0 40px rgba(0,240,255,0.35); }
 
         .hero .tagline {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: clamp(0.7rem, 1.5vw, 0.9rem);
             color: var(--gold-dim);
             letter-spacing: 0.45em;
@@ -156,10 +156,10 @@
         }
         .tri-card.ors:hover { border-color: var(--ors-color); box-shadow: 0 0 30px rgba(77,165,201,0.2); }
         .tri-card.noir:hover { border-color: var(--noir-color); box-shadow: 0 0 30px rgba(201,77,77,0.2); }
-        .tri-card.core:hover { border-color: var(--core-color); box-shadow: 0 0 30px rgba(201,165,77,0.2); }
+        .tri-card.core:hover { border-color: var(--core-color); box-shadow: 0 0 30px rgba(0,240,255,0.2); }
 
         .tri-name {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.2rem;
             letter-spacing: 0.25em;
             margin-bottom: 6px;
@@ -191,7 +191,7 @@
         }
 
         .tri-action {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
             letter-spacing: 0.3em;
             margin-top: 18px;
@@ -210,7 +210,7 @@
         }
 
         .arch-section h2 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
             letter-spacing: 0.4em;
             color: var(--gold-dim);
@@ -231,7 +231,7 @@
             background: rgba(3,2,2,0.5);
         }
         .arch-card h3 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
             letter-spacing: 0.25em;
             color: var(--gold);
@@ -251,7 +251,7 @@
             padding: 40px 40px 60px;
         }
         .strata-section h2 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
             letter-spacing: 0.4em;
             color: var(--gold-dim);
@@ -275,13 +275,13 @@
             border-color: var(--gold-faint);
         }
         .strata-num {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.65rem;
             letter-spacing: 0.2em;
             color: var(--gold-dim);
         }
         .strata-name {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             color: var(--cream);
             margin: 4px 0;
@@ -300,7 +300,7 @@
             padding: 40px 40px 60px;
         }
         .azimuth-section h2 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
             letter-spacing: 0.4em;
             color: var(--gold-dim);
@@ -330,7 +330,7 @@
             padding: 40px 40px 60px;
         }
         .knowledge-section h2 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
             letter-spacing: 0.4em;
             color: var(--gold-dim);
@@ -350,7 +350,7 @@
             background: rgba(3,2,2,0.5);
         }
         .know-num {
-            font-family: 'Cinzel Decorative', serif;
+            font-family: 'Inter', sans-serif; font-weight: 900;
             font-size: 2rem;
             color: var(--gold);
             line-height: 1.2;
@@ -378,7 +378,7 @@
             margin: 0 auto;
         }
         .cta-section blockquote {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.2rem;
             font-style: italic;
             color: var(--cream);
@@ -394,7 +394,7 @@
             border: 1px solid var(--gold-dim);
             border-radius: 4px;
             padding: 14px 36px;
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
             letter-spacing: 0.2em;
             color: var(--gold);
@@ -402,11 +402,11 @@
             transition: all 0.3s;
         }
         .cta-btn:hover {
-            background: rgba(201,165,77,0.1);
+            background: rgba(0,240,255,0.1);
             border-color: var(--gold);
         }
         .cta-btn.primary {
-            background: rgba(201,165,77,0.08);
+            background: rgba(0,240,255,0.08);
             border-color: var(--gold);
         }
 
@@ -415,7 +415,7 @@
             position: relative; z-index: 1;
             text-align: center;
             padding: 50px 40px;
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.6rem;
             color: var(--gray);
             letter-spacing: 0.3em;
@@ -439,7 +439,7 @@
 <canvas id="starfield"></canvas>
 
 <nav>
-    <a href="index.html" class="nav-brand">OROBOROS LABS</a>
+    <a href="https://oroboroslab.github.io/" class="nav-brand">OROBOROS LABS</a>
     <ul>
         <li><a href="index.html">LIBER FONTIS</a></li>
         <li><a href="liber-exitus.html">LIBER EXITUS</a></li>
@@ -664,7 +664,7 @@
 (function(){
     const c=document.getElementById('starfield'),x=c.getContext('2d');let s=[];
     function r(){c.width=innerWidth;c.height=innerHeight;s=[];for(let i=0;i<220;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+.2,a:Math.random()*.6+.1,s:Math.random()*.002+.001});}
-    function d(){x.clearRect(0,0,c.width,c.height);const t=Date.now();s.forEach(st=>{const f=.5+.5*Math.sin(t*st.s);x.beginPath();x.arc(st.x,st.y,st.r,0,Math.PI*2);x.fillStyle=`rgba(201,165,77,${st.a*f})`;x.fill();});requestAnimationFrame(d);}
+    function d(){x.clearRect(0,0,c.width,c.height);const t=Date.now();s.forEach(st=>{const f=.5+.5*Math.sin(t*st.s);x.beginPath();x.arc(st.x,st.y,st.r,0,Math.PI*2);x.fillStyle=`rgba(0,240,255,${st.a*f})`;x.fill();});requestAnimationFrame(d);}
     addEventListener('resize',r);r();d();
 })();
 
@@ -683,10 +683,10 @@
         ctx.beginPath();ctx.strokeStyle='rgba(201,77,77,0.5)';ctx.lineWidth=1.5;
         for(let x=0;x<w;x++){const y=Math.cos(2*Math.PI*(1272/10000)*x+t*3)*30;if(x===0)ctx.moveTo(x,mid+y);else ctx.lineTo(x,mid+y);}ctx.stroke();
         // Phi interference
-        ctx.beginPath();ctx.strokeStyle='rgba(201,165,77,0.25)';ctx.lineWidth=1;
+        ctx.beginPath();ctx.strokeStyle='rgba(0,240,255,0.25)';ctx.lineWidth=1;
         for(let x=0;x<w;x++){const y=Math.sin(2*Math.PI*(777/10000)*x+t*2)*15+Math.cos(2*Math.PI*(1272/10000)*x+t*3)*15;if(x===0)ctx.moveTo(x,mid+y);else ctx.lineTo(x,mid+y);}ctx.stroke();
         // Center
-        ctx.beginPath();ctx.strokeStyle='rgba(201,165,77,0.05)';ctx.moveTo(0,mid);ctx.lineTo(w,mid);ctx.stroke();
+        ctx.beginPath();ctx.strokeStyle='rgba(0,240,255,0.05)';ctx.moveTo(0,mid);ctx.lineTo(w,mid);ctx.stroke();
         requestAnimationFrame(draw);
     }
     addEventListener('resize',resize);resize();draw();
