@@ -9,15 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #050508;
-            --bg-secondary: #0a0a12;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --text-muted: #606070;
-            --card-bg: rgba(20, 20, 35, 0.8);
+            --bg-primary: #050505;
+            --bg-secondary: #0a0808;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a8;
+            --text-muted: #606068;
+            --card-bg: rgba(20, 16, 16, 0.8);
             --card-border: rgba(255, 255, 255, 0.08);
-            --cyan: #00f0ff;
-            --purple: #8b5cf6;
+            --cyan: #ff2244;
+            --purple: #c0c0cc;
+            --red: #ff2244;
+            --red-dim: #aa1830;
+            --silver: #c0c0cc;
+            --silver-dim: #808090;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,14 +50,14 @@
             text-transform: uppercase;
             transition: color 0.3s;
         }
-        .nav-brand:hover { color: var(--cyan); }
+        .nav-brand:hover { color: var(--red); }
         .nav-links { display: flex; gap: 32px; list-style: none; }
         .nav-links a {
             color: var(--text-muted); text-decoration: none;
             font-size: 0.85rem; font-weight: 500;
             transition: color 0.3s;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+        .nav-links a:hover, .nav-links a.active { color: var(--red); }
 
         /* ─── HERO ─── */
         .hero {
@@ -62,9 +66,9 @@
             padding: 180px 24px 100px;
             position: relative; overflow: hidden;
             background:
-                radial-gradient(ellipse at 30% 40%, rgba(0,240,255,0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 60%, rgba(139,92,246,0.08) 0%, transparent 50%),
-                linear-gradient(180deg, #050508 0%, #0a0a12 100%);
+                radial-gradient(ellipse at 30% 40%, rgba(255,34,68,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(192,192,204,0.05) 0%, transparent 50%),
+                linear-gradient(180deg, #050505 0%, #0a0808 100%);
         }
         .hero::before {
             content: '';
@@ -92,7 +96,7 @@
         }
         .hero-text h1 .line2 {
             display: block;
-            background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+            background: linear-gradient(135deg, var(--red) 0%, var(--silver) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
@@ -112,7 +116,7 @@
         .stat-value {
             font-size: 2.5rem; font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
-            background: linear-gradient(135deg, #fff, var(--cyan));
+            background: linear-gradient(135deg, #fff, var(--red));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .stat-label {
@@ -124,15 +128,15 @@
             display: flex; gap: 16px;
         }
         .btn-primary {
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            background: linear-gradient(135deg, var(--red), var(--silver-dim));
             color: #000; padding: 16px 32px; border-radius: 8px;
             font-weight: 700; text-decoration: none;
             transition: all 0.3s;
-            box-shadow: 0 4px 30px rgba(0,240,255,0.3);
+            box-shadow: 0 4px 30px rgba(255,34,68,0.3);
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 40px rgba(0,240,255,0.4);
+            box-shadow: 0 8px 40px rgba(255,34,68,0.4);
         }
         .btn-secondary {
             background: transparent; color: var(--text-primary);
@@ -143,7 +147,7 @@
         }
         .btn-secondary:hover {
             border-color: var(--cyan);
-            background: rgba(0,240,255,0.1);
+            background: rgba(255,34,68,0.1);
         }
 
         /* Hero droids */
@@ -166,11 +170,38 @@
             position: absolute; top: 40px; left: 50%;
             transform: translateX(-50%);
             width: 110px; height: 160px;
-            background: linear-gradient(180deg, rgba(20,20,35,0.95) 0%, rgba(10,10,20,0.8) 50%, transparent 100%);
+            background: linear-gradient(180deg, rgba(18,16,18,0.95) 0%, rgba(10,8,10,0.8) 50%, transparent 100%);
             border-radius: 55px 55px 28px 28px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 0 40px rgba(0,240,255,0.08), inset 0 0 40px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 0 40px rgba(255,34,68,0.06), inset 0 0 40px rgba(0,0,0,0.5);
         }
+        /* Ghost arms - rounded, flowing outward */
+        .specter-body::before, .specter-body::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            width: 30px; height: 65px;
+            background: linear-gradient(180deg, rgba(18,16,18,0.7) 0%, transparent 100%);
+            border-radius: 15px;
+        }
+        .specter-body::before {
+            left: -20px;
+            transform: rotate(12deg);
+            border-left: 1px solid rgba(255,255,255,0.04);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .specter-body::after {
+            right: -20px;
+            transform: rotate(-12deg);
+            border-right: 1px solid rgba(255,255,255,0.04);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .specter.xiron-sp .specter-body { box-shadow: 0 0 40px rgba(255,34,68,0.08), inset 0 0 40px rgba(0,0,0,0.5); }
+        .specter.xiron-sp .specter-body::before,
+        .specter.xiron-sp .specter-body::after { box-shadow: 0 0 10px rgba(255,34,68,0.05); }
+        .specter.meta-sp .specter-body { box-shadow: 0 0 40px rgba(192,192,204,0.06), inset 0 0 40px rgba(0,0,0,0.5); }
+        .specter.meta-sp .specter-body::before,
+        .specter.meta-sp .specter-body::after { box-shadow: 0 0 10px rgba(192,192,204,0.04); }
         .specter-face {
             position: absolute; top: 50px; left: 50%;
             transform: translateX(-50%); width: 90px; height: 50px;
@@ -182,13 +213,13 @@
             width: 18px; height: 6px; border-radius: 50%;
             animation: eye-glow 3s ease-in-out infinite;
         }
-        .specter-eye.cyan {
+        .specter-eye.red {
             background: #fff;
-            box-shadow: 0 0 10px #fff, 0 0 20px var(--cyan), 0 0 30px var(--cyan);
+            box-shadow: 0 0 10px #fff, 0 0 20px var(--red), 0 0 30px var(--red);
         }
-        .specter-eye.purple {
+        .specter-eye.silver {
             background: #fff;
-            box-shadow: 0 0 10px #fff, 0 0 20px var(--purple), 0 0 30px var(--purple);
+            box-shadow: 0 0 10px #fff, 0 0 20px var(--silver), 0 0 30px var(--silver);
         }
         @keyframes eye-glow {
             0%, 100% { opacity: 1; }
@@ -198,8 +229,8 @@
             margin-top: 18px; height: 4px; border-radius: 2px;
             margin-left: auto; margin-right: auto;
         }
-        .specter-mouth.cyan { width: 28px; background: #fff; box-shadow: 0 0 8px var(--cyan); }
-        .specter-mouth.purple { width: 22px; background: #fff; box-shadow: 0 0 8px var(--purple); }
+        .specter-mouth.red { width: 28px; background: #fff; box-shadow: 0 0 8px var(--red); }
+        .specter-mouth.silver { width: 22px; background: #fff; box-shadow: 0 0 8px var(--silver); }
 
         .specter-icon {
             position: absolute; top: 10px; left: 50%;
@@ -209,8 +240,8 @@
             width: 100%; height: 100%;
             fill: none; stroke-width: 2;
         }
-        .specter-icon.cyan svg { stroke: var(--cyan); filter: drop-shadow(0 0 8px var(--cyan)); }
-        .specter-icon.purple svg { stroke: var(--purple); filter: drop-shadow(0 0 8px var(--purple)); }
+        .specter-icon.red svg { stroke: var(--red); filter: drop-shadow(0 0 8px var(--red)); }
+        .specter-icon.silver svg { stroke: var(--silver); filter: drop-shadow(0 0 8px var(--silver)); }
 
         .specter-label {
             position: absolute; bottom: 0; left: 50%;
@@ -220,8 +251,8 @@
             text-transform: uppercase; letter-spacing: 2px;
             white-space: nowrap;
         }
-        .specter-label.cyan { color: var(--cyan); }
-        .specter-label.purple { color: var(--purple); }
+        .specter-label.red { color: var(--red); }
+        .specter-label.silver { color: var(--silver); }
 
         /* ─── PRODUCTS SECTION ─── */
         .products-section {
@@ -235,7 +266,7 @@
         }
         .section-header h2 {
             font-size: 2.5rem; margin-bottom: 16px;
-            background: linear-gradient(135deg, #fff, var(--cyan));
+            background: linear-gradient(135deg, #fff, var(--red));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .section-header p { color: var(--text-secondary); font-size: 1.1rem; }
@@ -261,8 +292,8 @@
             border-color: var(--card-accent);
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-        .product-card.xiron { --card-accent: var(--cyan); }
-        .product-card.meta-card { --card-accent: var(--purple); }
+        .product-card.xiron { --card-accent: var(--red); }
+        .product-card.meta-card { --card-accent: var(--silver); }
 
         .product-icon {
             width: 80px; height: 80px; border-radius: 20px;
@@ -315,22 +346,22 @@
             transition: all 0.3s; margin-right: 8px; margin-top: 8px;
         }
         .xiron .product-link {
-            background: rgba(0,240,255,0.1);
-            color: var(--cyan);
-            border: 1px solid rgba(0,240,255,0.2);
+            background: rgba(255,34,68,0.1);
+            color: var(--red);
+            border: 1px solid rgba(255,34,68,0.2);
         }
         .xiron .product-link:hover {
-            background: rgba(0,240,255,0.2);
-            box-shadow: 0 0 20px rgba(0,240,255,0.15);
+            background: rgba(255,34,68,0.2);
+            box-shadow: 0 0 20px rgba(255,34,68,0.15);
         }
         .meta-card .product-link {
-            background: rgba(139,92,246,0.1);
-            color: var(--purple);
-            border: 1px solid rgba(139,92,246,0.2);
+            background: rgba(192,192,204,0.08);
+            color: var(--silver);
+            border: 1px solid rgba(192,192,204,0.2);
         }
         .meta-card .product-link:hover {
-            background: rgba(139,92,246,0.2);
-            box-shadow: 0 0 20px rgba(139,92,246,0.15);
+            background: rgba(192,192,204,0.15);
+            box-shadow: 0 0 20px rgba(192,192,204,0.1);
         }
 
         /* ─── FEATURES SECTION ─── */
@@ -349,14 +380,14 @@
             transition: all 0.3s;
         }
         .feature-card:hover {
-            border-color: rgba(0,240,255,0.3);
+            border-color: rgba(255,34,68,0.2);
             transform: translateY(-4px);
         }
         .feature-card h4 { font-size: 1.1rem; margin-bottom: 12px; color: #fff; }
         .feature-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
         .feature-icon {
             width: 48px; height: 48px;
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            background: linear-gradient(135deg, var(--red), var(--silver-dim));
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 20px; font-size: 24px;
@@ -425,37 +456,37 @@
 
         <div class="hero-visual">
             <!-- XIRON Specter -->
-            <div class="specter">
-                <div class="specter-icon cyan">
+            <div class="specter xiron-sp">
+                <div class="specter-icon red">
                     <svg viewBox="0 0 24 28"><path d="M12 2L3 7v7c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
                 </div>
                 <div class="specter-body">
                     <div class="specter-face">
                         <div class="specter-eyes">
-                            <div class="specter-eye cyan"></div>
-                            <div class="specter-eye cyan"></div>
+                            <div class="specter-eye red"></div>
+                            <div class="specter-eye red"></div>
                         </div>
-                        <div class="specter-mouth cyan"></div>
+                        <div class="specter-mouth red"></div>
                     </div>
                 </div>
-                <div class="specter-label cyan">XIRON</div>
+                <div class="specter-label red">XIRON</div>
             </div>
 
             <!-- META Specter -->
-            <div class="specter">
-                <div class="specter-icon purple">
+            <div class="specter meta-sp">
+                <div class="specter-icon silver">
                     <svg viewBox="0 0 24 28"><path d="M12 2L3 7v7c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
                 </div>
                 <div class="specter-body">
                     <div class="specter-face">
                         <div class="specter-eyes">
-                            <div class="specter-eye purple"></div>
-                            <div class="specter-eye purple"></div>
+                            <div class="specter-eye silver"></div>
+                            <div class="specter-eye silver"></div>
                         </div>
-                        <div class="specter-mouth purple"></div>
+                        <div class="specter-mouth silver"></div>
                     </div>
                 </div>
-                <div class="specter-label purple">META</div>
+                <div class="specter-label silver">META</div>
             </div>
         </div>
     </div>
