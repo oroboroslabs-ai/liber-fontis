@@ -150,109 +150,342 @@
             background: rgba(255,34,68,0.1);
         }
 
-        /* Hero droids */
+        /* Hero droids — thin hovering android units */
         .hero-visual {
-            display: flex; gap: 40px; justify-content: center;
-        }
-        .specter {
-            width: 180px; height: 260px;
-            position: relative;
-            animation: float-specter 6s ease-in-out infinite;
-        }
-        .specter:nth-child(2) { animation-delay: -3s; }
-
-        @keyframes float-specter {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            display: flex; gap: 50px; justify-content: center; align-items: flex-end;
         }
 
-        .specter-body {
-            position: absolute; top: 40px; left: 50%;
-            transform: translateX(-50%);
-            width: 110px; height: 160px;
-            background: linear-gradient(180deg, rgba(18,16,18,0.95) 0%, rgba(10,8,10,0.8) 50%, transparent 100%);
-            border-radius: 55px 55px 28px 28px;
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: 0 0 40px rgba(255,34,68,0.06), inset 0 0 40px rgba(0,0,0,0.5);
-        }
-        /* Ghost arms - rounded, flowing outward */
-        .specter-body::before, .specter-body::after {
-            content: '';
-            position: absolute;
-            top: 50px;
-            width: 30px; height: 65px;
-            background: linear-gradient(180deg, rgba(18,16,18,0.7) 0%, transparent 100%);
-            border-radius: 15px;
-        }
-        .specter-body::before {
-            left: -20px;
-            transform: rotate(12deg);
-            border-left: 1px solid rgba(255,255,255,0.04);
-            border-top: 1px solid rgba(255,255,255,0.04);
-        }
-        .specter-body::after {
-            right: -20px;
-            transform: rotate(-12deg);
-            border-right: 1px solid rgba(255,255,255,0.04);
-            border-top: 1px solid rgba(255,255,255,0.04);
-        }
-        .specter.xiron-sp .specter-body { box-shadow: 0 0 40px rgba(255,34,68,0.08), inset 0 0 40px rgba(0,0,0,0.5); }
-        .specter.xiron-sp .specter-body::before,
-        .specter.xiron-sp .specter-body::after { box-shadow: 0 0 10px rgba(255,34,68,0.05); }
-        .specter.meta-sp .specter-body { box-shadow: 0 0 40px rgba(192,192,204,0.06), inset 0 0 40px rgba(0,0,0,0.5); }
-        .specter.meta-sp .specter-body::before,
-        .specter.meta-sp .specter-body::after { box-shadow: 0 0 10px rgba(192,192,204,0.04); }
-        .specter-face {
-            position: absolute; top: 50px; left: 50%;
-            transform: translateX(-50%); width: 90px; height: 50px;
-        }
-        .specter-eyes {
-            display: flex; justify-content: center; gap: 24px;
-        }
-        .specter-eye {
-            width: 18px; height: 6px; border-radius: 50%;
-            animation: eye-glow 3s ease-in-out infinite;
-        }
-        .specter-eye.red {
-            background: #fff;
-            box-shadow: 0 0 10px #fff, 0 0 20px var(--red), 0 0 30px var(--red);
-        }
-        .specter-eye.silver {
-            background: #fff;
-            box-shadow: 0 0 10px #fff, 0 0 20px var(--silver), 0 0 30px var(--silver);
-        }
         @keyframes eye-glow {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            50% { opacity: 0.6; }
         }
-        .specter-mouth {
-            margin-top: 18px; height: 4px; border-radius: 2px;
-            margin-left: auto; margin-right: auto;
+        @keyframes core-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255,34,68,0.15), inset 0 0 6px rgba(255,34,68,0.1); }
+            50% { box-shadow: 0 0 18px rgba(255,34,68,0.3), inset 0 0 10px rgba(255,34,68,0.2); }
         }
-        .specter-mouth.red { width: 28px; background: #fff; box-shadow: 0 0 8px var(--red); }
-        .specter-mouth.silver { width: 22px; background: #fff; box-shadow: 0 0 8px var(--silver); }
+        @keyframes core-pulse-s {
+            0%, 100% { box-shadow: 0 0 8px rgba(192,192,204,0.1), inset 0 0 4px rgba(192,192,204,0.08); }
+            50% { box-shadow: 0 0 14px rgba(192,192,204,0.2), inset 0 0 8px rgba(192,192,204,0.15); }
+        }
 
-        .specter-icon {
-            position: absolute; top: 10px; left: 50%;
-            transform: translateX(-50%); width: 36px; height: 36px;
+        /* ═══════════════════════════════════
+           XIRON — Larger, more defined unit
+           ═══════════════════════════════════ */
+        .droid-xiron {
+            width: 200px; height: 340px;
+            position: relative;
+            animation: float-x 6s ease-in-out infinite;
         }
-        .specter-icon svg {
+        @keyframes float-x {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+
+        /* Head — tall rounded capsule */
+        .x-head {
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+            width: 78px; height: 92px;
+            background: linear-gradient(180deg, #161218 0%, #0e0a10 50%, #0a0810 100%);
+            border-radius: 39px 39px 26px 26px;
+            border: 1px solid rgba(255,34,68,0.1);
+            box-shadow: 0 0 30px rgba(255,34,68,0.06), inset 0 -16px 30px rgba(0,0,0,0.5);
+        }
+        /* Model slot — top of head (rear insertion point) */
+        .x-slot {
+            position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+            width: 34px; height: 9px;
+            background: linear-gradient(90deg, rgba(255,34,68,0.08), rgba(255,34,68,0.2), rgba(255,34,68,0.08));
+            border-radius: 5px;
+            border: 1px solid rgba(255,34,68,0.18);
+            box-shadow: 0 0 8px rgba(255,34,68,0.12);
+        }
+        .x-slot::after {
+            content: ''; position: absolute; top: 2.5px; left: 50%; transform: translateX(-50%);
+            width: 16px; height: 3px; border-radius: 2px;
+            background: rgba(255,34,68,0.45);
+            box-shadow: 0 0 4px rgba(255,34,68,0.3);
+        }
+        /* Visor shield */
+        .x-visor {
+            position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+            width: 30px; height: 30px;
+        }
+        .x-visor svg {
             width: 100%; height: 100%;
-            fill: none; stroke-width: 2;
+            fill: rgba(255,34,68,0.06); stroke: var(--red); stroke-width: 1;
+            filter: drop-shadow(0 0 6px var(--red));
         }
-        .specter-icon.red svg { stroke: var(--red); filter: drop-shadow(0 0 8px var(--red)); }
-        .specter-icon.silver svg { stroke: var(--silver); filter: drop-shadow(0 0 8px var(--silver)); }
+        .x-eyes {
+            position: absolute; top: 46px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 20px;
+        }
+        .x-eye {
+            width: 18px; height: 6px; border-radius: 3px;
+            background: #fff;
+            box-shadow: 0 0 8px #fff, 0 0 18px var(--red), 0 0 32px rgba(255,34,68,0.5);
+            animation: eye-glow 3s ease-in-out infinite;
+        }
+        .x-mouth {
+            position: absolute; top: 66px; left: 50%; transform: translateX(-50%);
+            width: 26px; height: 3.5px; border-radius: 2px;
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 0 5px var(--red), 0 0 12px rgba(255,34,68,0.35);
+        }
 
-        .specter-label {
-            position: absolute; bottom: 0; left: 50%;
-            transform: translateX(-50%);
+        /* Thin neck */
+        .x-neck {
+            position: absolute; top: 100px; left: 50%; transform: translateX(-50%);
+            width: 14px; height: 16px;
+            background: linear-gradient(180deg, #0e0a10, #0a0810);
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+
+        /* Torso — thin sleek rounded */
+        .x-torso {
+            position: absolute; top: 114px; left: 50%; transform: translateX(-50%);
+            width: 64px; height: 100px;
+            background: linear-gradient(180deg, #141018 0%, #0c0a10 40%, #080610 80%, rgba(8,6,10,0.5) 100%);
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.5);
+        }
+        .x-torso::before {
+            content: ''; position: absolute; top: 50px; left: 50%; transform: translateX(-50%);
+            width: 32px; height: 1.5px; border-radius: 1px;
+            background: rgba(255,34,68,0.15);
+        }
+        .x-torso::after {
+            content: ''; position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
+            width: 22px; height: 1.5px; border-radius: 1px;
+            background: rgba(255,34,68,0.08);
+        }
+        /* Core light */
+        .x-core {
+            position: absolute; top: 130px; left: 50%; transform: translateX(-50%);
+            width: 18px; height: 18px; border-radius: 50%;
+            border: 1.5px solid rgba(255,34,68,0.3);
+            animation: core-pulse 4s ease-in-out infinite;
+        }
+        .x-core::after {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 6px var(--red), 0 0 14px rgba(255,34,68,0.4);
+        }
+
+        /* Arms — thin rounded with joint + hand */
+        .x-arm {
+            position: absolute; top: 120px;
+            width: 16px; height: 85px;
+            background: linear-gradient(180deg, #131018 0%, #0a0810 50%, rgba(8,6,10,0.3) 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .x-arm.left { left: 36px; transform: rotate(6deg); }
+        .x-arm.right { right: 36px; transform: rotate(-6deg); }
+        .x-arm::before {
+            content: ''; position: absolute; top: 32px; left: 50%; transform: translateX(-50%);
+            width: 11px; height: 2px; border-radius: 1px;
+            background: rgba(255,34,68,0.15);
+        }
+        .x-arm::after {
+            content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+            width: 13px; height: 13px; border-radius: 50%;
+            background: radial-gradient(circle, #100c14 30%, #080610 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Legs — thin */
+        .x-legs {
+            position: absolute; top: 214px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 12px;
+        }
+        .x-leg {
+            width: 15px; height: 68px;
+            background: linear-gradient(180deg, #0e0c14 0%, #080610 50%, rgba(6,4,8,0.3) 100%);
+            border-radius: 8px 8px 4px 4px;
+            border: 1px solid rgba(255,255,255,0.02);
+            position: relative;
+        }
+        .x-leg::before {
+            content: ''; position: absolute; top: 26px; left: 50%; transform: translateX(-50%);
+            width: 10px; height: 1.5px; border-radius: 1px;
+            background: rgba(255,34,68,0.1);
+        }
+        .x-leg::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 20px; height: 8px;
+            background: rgba(10,8,14,0.7);
+            border-radius: 3px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* Hover glow */
+        .x-glow {
+            position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
+            width: 70px; height: 5px;
+            background: radial-gradient(ellipse, rgba(255,34,68,0.18) 0%, transparent 70%);
+            border-radius: 50%; filter: blur(3px);
+        }
+        .x-label {
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 11px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 2px;
+            font-size: 12px; font-weight: 600; color: var(--red);
+            text-transform: uppercase; letter-spacing: 3px;
             white-space: nowrap;
         }
-        .specter-label.red { color: var(--red); }
-        .specter-label.silver { color: var(--silver); }
+
+        /* ═══════════════════════════════════
+           META — Smaller, less defined version
+           ═══════════════════════════════════ */
+        .droid-meta {
+            width: 150px; height: 270px;
+            position: relative;
+            animation: float-m 5.5s ease-in-out infinite;
+        }
+        @keyframes float-m {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Head — smaller rounder */
+        .m-head {
+            position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+            width: 58px; height: 66px;
+            background: linear-gradient(180deg, #141218 0%, #0c0a0e 50%, #08080c 100%);
+            border-radius: 29px 29px 20px 20px;
+            border: 1px solid rgba(192,192,204,0.08);
+            box-shadow: 0 0 20px rgba(192,192,204,0.04), inset 0 -12px 25px rgba(0,0,0,0.5);
+        }
+        /* Model slot — smaller */
+        .m-slot {
+            position: absolute; top: 3px; left: 50%; transform: translateX(-50%);
+            width: 24px; height: 6px;
+            background: linear-gradient(90deg, rgba(192,192,204,0.06), rgba(192,192,204,0.14), rgba(192,192,204,0.06));
+            border-radius: 3px;
+            border: 1px solid rgba(192,192,204,0.12);
+            box-shadow: 0 0 5px rgba(192,192,204,0.08);
+        }
+        .m-slot::after {
+            content: ''; position: absolute; top: 1.5px; left: 50%; transform: translateX(-50%);
+            width: 10px; height: 2px; border-radius: 1px;
+            background: rgba(192,192,204,0.3);
+        }
+        .m-eyes {
+            position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 14px;
+        }
+        .m-eye {
+            width: 12px; height: 4px; border-radius: 2px;
+            background: #fff;
+            box-shadow: 0 0 6px #fff, 0 0 12px var(--silver), 0 0 22px rgba(192,192,204,0.4);
+            animation: eye-glow 3.5s ease-in-out infinite;
+        }
+        .m-mouth {
+            position: absolute; top: 46px; left: 50%; transform: translateX(-50%);
+            width: 16px; height: 2.5px; border-radius: 2px;
+            background: rgba(255,255,255,0.7);
+            box-shadow: 0 0 4px var(--silver), 0 0 8px rgba(192,192,204,0.25);
+        }
+
+        /* Thin neck */
+        .m-neck {
+            position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+            width: 10px; height: 12px;
+            background: linear-gradient(180deg, #0c0a0e, #08080c);
+            border-radius: 4px;
+        }
+
+        /* Torso — smaller, same shape */
+        .m-torso {
+            position: absolute; top: 90px; left: 50%; transform: translateX(-50%);
+            width: 48px; height: 76px;
+            background: linear-gradient(180deg, #121018 0%, #0a080e 40%, #08060c 80%, rgba(6,6,8,0.4) 100%);
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: inset 0 0 18px rgba(0,0,0,0.4);
+        }
+        .m-torso::before {
+            content: ''; position: absolute; top: 38px; left: 50%; transform: translateX(-50%);
+            width: 22px; height: 1px; border-radius: 1px;
+            background: rgba(192,192,204,0.1);
+        }
+        /* Core — dimmer */
+        .m-core {
+            position: absolute; top: 104px; left: 50%; transform: translateX(-50%);
+            width: 12px; height: 12px; border-radius: 50%;
+            border: 1px solid rgba(192,192,204,0.2);
+            animation: core-pulse-s 5s ease-in-out infinite;
+        }
+        .m-core::after {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 4px; height: 4px; border-radius: 50%;
+            background: var(--silver);
+            box-shadow: 0 0 4px var(--silver);
+        }
+
+        /* Arms — thinner */
+        .m-arm {
+            position: absolute; top: 96px;
+            width: 11px; height: 62px;
+            background: linear-gradient(180deg, #100e16 0%, #08060e 50%, rgba(6,4,8,0.25) 100%);
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+        .m-arm.left { left: 30px; transform: rotate(7deg); }
+        .m-arm.right { right: 30px; transform: rotate(-7deg); }
+        .m-arm::before {
+            content: ''; position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+            width: 7px; height: 1.5px; border-radius: 1px;
+            background: rgba(192,192,204,0.1);
+        }
+        .m-arm::after {
+            content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+            width: 9px; height: 9px; border-radius: 50%;
+            background: radial-gradient(circle, #0e0c14 30%, #08080c 100%);
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        /* Legs — shorter */
+        .m-legs {
+            position: absolute; top: 166px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px;
+        }
+        .m-leg {
+            width: 12px; height: 50px;
+            background: linear-gradient(180deg, #0c0a12 0%, #06060a 50%, rgba(4,4,6,0.2) 100%);
+            border-radius: 6px 6px 3px 3px;
+            border: 1px solid rgba(255,255,255,0.02);
+            position: relative;
+        }
+        .m-leg::before {
+            content: ''; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 7px; height: 1px; border-radius: 1px;
+            background: rgba(192,192,204,0.07);
+        }
+        .m-leg::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 15px; height: 6px;
+            background: rgba(8,6,10,0.6);
+            border-radius: 2px;
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+
+        /* Hover glow */
+        .m-glow {
+            position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+            width: 50px; height: 4px;
+            background: radial-gradient(ellipse, rgba(192,192,204,0.12) 0%, transparent 70%);
+            border-radius: 50%; filter: blur(2px);
+        }
+        .m-label {
+            position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; font-weight: 600; color: var(--silver);
+            text-transform: uppercase; letter-spacing: 3px;
+            white-space: nowrap;
+        }
 
         /* ─── PRODUCTS SECTION ─── */
         .products-section {
@@ -455,38 +688,41 @@
         </div>
 
         <div class="hero-visual">
-            <!-- XIRON Specter -->
-            <div class="specter xiron-sp">
-                <div class="specter-icon red">
-                    <svg viewBox="0 0 24 28"><path d="M12 2L3 7v7c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
-                </div>
-                <div class="specter-body">
-                    <div class="specter-face">
-                        <div class="specter-eyes">
-                            <div class="specter-eye red"></div>
-                            <div class="specter-eye red"></div>
-                        </div>
-                        <div class="specter-mouth red"></div>
+            <!-- XIRON — Larger, fully defined android unit -->
+            <div class="droid-xiron">
+                <div class="x-head">
+                    <div class="x-slot"></div>
+                    <div class="x-visor">
+                        <svg viewBox="0 0 24 28"><path d="M12 2L3 7v7c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
                     </div>
+                    <div class="x-eyes"><div class="x-eye"></div><div class="x-eye"></div></div>
+                    <div class="x-mouth"></div>
                 </div>
-                <div class="specter-label red">XIRON</div>
+                <div class="x-neck"></div>
+                <div class="x-torso"></div>
+                <div class="x-core"></div>
+                <div class="x-arm left"></div>
+                <div class="x-arm right"></div>
+                <div class="x-legs"><div class="x-leg"></div><div class="x-leg"></div></div>
+                <div class="x-glow"></div>
+                <div class="x-label">XIRON</div>
             </div>
 
-            <!-- META Specter -->
-            <div class="specter meta-sp">
-                <div class="specter-icon silver">
-                    <svg viewBox="0 0 24 28"><path d="M12 2L3 7v7c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
+            <!-- META — Smaller, less defined version -->
+            <div class="droid-meta">
+                <div class="m-head">
+                    <div class="m-slot"></div>
+                    <div class="m-eyes"><div class="m-eye"></div><div class="m-eye"></div></div>
+                    <div class="m-mouth"></div>
                 </div>
-                <div class="specter-body">
-                    <div class="specter-face">
-                        <div class="specter-eyes">
-                            <div class="specter-eye silver"></div>
-                            <div class="specter-eye silver"></div>
-                        </div>
-                        <div class="specter-mouth silver"></div>
-                    </div>
-                </div>
-                <div class="specter-label silver">META</div>
+                <div class="m-neck"></div>
+                <div class="m-torso"></div>
+                <div class="m-core"></div>
+                <div class="m-arm left"></div>
+                <div class="m-arm right"></div>
+                <div class="m-legs"><div class="m-leg"></div><div class="m-leg"></div></div>
+                <div class="m-glow"></div>
+                <div class="m-label">META</div>
             </div>
         </div>
     </div>
