@@ -330,6 +330,48 @@
             background: radial-gradient(ellipse, rgba(255,34,68,0.18) 0%, transparent 70%);
             border-radius: 50%; filter: blur(3px);
         }
+        /* XIRON indicator lights — double META's count */
+        .x-lights {
+            position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 4px;
+        }
+        .x-light {
+            width: 4px; height: 4px; border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 5px var(--red), 0 0 10px rgba(255,34,68,0.3);
+            animation: light-blink 2s ease-in-out infinite;
+        }
+        .x-light:nth-child(2) { animation-delay: 0.3s; }
+        .x-light:nth-child(3) { animation-delay: 0.6s; }
+        .x-light:nth-child(4) { animation-delay: 0.9s; }
+        .x-light:nth-child(5) { animation-delay: 1.2s; }
+        .x-light:nth-child(6) { animation-delay: 1.5s; }
+
+        .x-side-lights {
+            position: absolute; top: 130px; left: 50%; transform: translateX(-50%);
+            width: 80px; display: flex; justify-content: space-between;
+        }
+        .x-side-light-group {
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .x-side-light {
+            width: 3px; height: 3px; border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 4px var(--red);
+            animation: light-blink 1.5s ease-in-out infinite;
+        }
+        .x-side-light:nth-child(2) { animation-delay: 0.5s; }
+
+        .x-foot-light {
+            position: absolute; top: 290px;
+            width: 3px; height: 3px; border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 3px var(--red);
+            animation: light-blink 2s ease-in-out infinite;
+        }
+        .x-foot-light.left { left: 72px; }
+        .x-foot-light.right { right: 72px; animation-delay: 0.7s; }
+
         .x-label {
             position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
             font-family: 'JetBrains Mono', monospace;
@@ -765,10 +807,14 @@
         </div>
 
         <div class="hero-visual">
-            <!-- XIRON — Larger, fully defined android unit -->
+            <!-- XIRON — Larger android unit with double lights -->
             <div class="droid-xiron">
                 <div class="x-head">
                     <div class="x-slot"></div>
+                    <div class="x-lights">
+                        <div class="x-light"></div><div class="x-light"></div><div class="x-light"></div>
+                        <div class="x-light"></div><div class="x-light"></div><div class="x-light"></div>
+                    </div>
                     <div class="x-visor">
                         <svg viewBox="0 0 24 28"><path d="M12 2L3 7v7c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
                     </div>
@@ -777,10 +823,16 @@
                 </div>
                 <div class="x-neck"></div>
                 <div class="x-torso"></div>
+                <div class="x-side-lights">
+                    <div class="x-side-light-group"><div class="x-side-light"></div><div class="x-side-light"></div></div>
+                    <div class="x-side-light-group"><div class="x-side-light"></div><div class="x-side-light"></div></div>
+                </div>
                 <div class="x-core"></div>
                 <div class="x-arm left"></div>
                 <div class="x-arm right"></div>
                 <div class="x-legs"><div class="x-leg"></div><div class="x-leg"></div></div>
+                <div class="x-foot-light left"></div>
+                <div class="x-foot-light right"></div>
                 <div class="x-glow"></div>
                 <div class="x-label">XIRON</div>
             </div>
